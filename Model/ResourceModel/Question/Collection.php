@@ -26,7 +26,7 @@ class Collection extends AbstractCollection
      *
      * @return Collection $this
      */
-    public function getActualDataForStore(int $storeId): Collection
+    public function getDataByStoreId(int $storeId): Collection
     {
         $this->getSelect()
             ->where(

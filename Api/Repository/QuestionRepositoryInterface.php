@@ -2,10 +2,11 @@
 
 namespace Nans\Faq\Api\Repository;
 
-use Nans\Faq\Api\Data\QuestionInterface;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Exception\NoSuchEntityException;
+
+use Nans\Faq\Api\Data\QuestionInterface;
 
 interface QuestionRepositoryInterface
 {
@@ -42,4 +43,11 @@ interface QuestionRepositoryInterface
      * @throws CouldNotDeleteException
      */
     public function deleteById(int $id);
+
+    /**
+     * @param array $data
+     *
+     * @return QuestionInterface
+     */
+    public function create(array $data = []): QuestionInterface;
 }

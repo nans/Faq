@@ -120,4 +120,14 @@ class QuestionRepository implements QuestionRepositoryInterface
         }
         return $question;
     }
+
+    /**
+     * @param array $data
+     *
+     * @return QuestionInterface
+     */
+    public function create(array $data = []): QuestionInterface
+    {
+        return $this->_factory->create(['data' => $data]);
+    }
 }

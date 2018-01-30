@@ -119,4 +119,14 @@ class CategoryRepository implements CategoryRepositoryInterface
         }
         return $category;
     }
+
+    /**
+     * @param array $data
+     *
+     * @return CategoryInterface
+     */
+    public function create(array $data = []): CategoryInterface
+    {
+        return $this->_factory->create(['data' => $data]);
+    }
 }
