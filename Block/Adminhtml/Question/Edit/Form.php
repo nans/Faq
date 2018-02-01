@@ -141,7 +141,7 @@ class Form extends Generic
                 'title' => __('Category'),
                 'name' => Question::CATEGORY_ID,
                 'required' => true,
-                'value' => $model->getCategoryId(),
+                'value' => ($model->getId()) ? $model->getCategoryId() : null,
                 'values' => $this->_getCategories(),
             ]
         );
@@ -191,7 +191,8 @@ class Form extends Generic
             [
                 'name' => Question::USEFUL,
                 'label' => __('Useful'),
-                'title' => __('Useful')
+                'title' => __('Useful'),
+                'class' => 'validate-zero-or-greater'
             ]
         );
 
@@ -201,7 +202,8 @@ class Form extends Generic
             [
                 'name' => Question::USELESS,
                 'label' => __('Useless'),
-                'title' => __('Useless')
+                'title' => __('Useless'),
+                'class' => 'validate-zero-or-greater'
             ]
         );
 

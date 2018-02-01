@@ -1,5 +1,23 @@
 <?php
 /** @var \Nans\Faq\Block\Frontend\Question $block */
-$questions = $block->getQuestions();
-$categories = $block->getCategories();
 ?>
+<script type="text/x-magento-init">
+{
+    "*": {
+        "Magento_Ui/js/core/app": {
+            "components": {
+                "questions": {
+                    "component"     : "Nans_Faq/js/faq_model",
+                    "baseUrl"       : "<?=$block->getBaseUrl()?>",
+                    "apiUrl"        : "<?=$block->getApiUrl()?>",
+                    "storeId"       : <?=$block->getStoreId()?>
+                }
+            }
+        }
+    }
+}
+</script>
+
+<div id="trip-builder-wrapper" data-bind="scope: 'questions'">
+
+</div>

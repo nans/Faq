@@ -7,7 +7,7 @@ use Magento\Backend\Block\Widget\Form\Container;
 use Magento\Framework\Phrase;
 use Magento\Framework\Registry;
 use Nans\Faq\Api\Data\CategoryInterface;
-use Nans\Faq\Helper\Constants;
+use Nans\Faq\Helper\AclNames;
 use Nans\Faq\Model\Category;
 
 class Edit extends Container
@@ -46,7 +46,7 @@ class Edit extends Container
 
         parent::_construct();
 
-        if ($this->_isAllowedAction(Constants::ACL_CATEGORY_SAVE)) {
+        if ($this->_isAllowedAction(AclNames::ACL_CATEGORY_SAVE)) {
             $this->buttonList->update('save', 'label', __('Save'));
             $this->buttonList->add(
                 'saveandcontinue',
@@ -68,7 +68,7 @@ class Edit extends Container
             $this->buttonList->remove('save');
         }
 
-        if ($this->_isAllowedAction(Constants::ACL_CATEGORY_DELETE)) {
+        if ($this->_isAllowedAction(AclNames::ACL_CATEGORY_DELETE)) {
             $this->buttonList->update('delete', 'label', __('Delete'));
         } else {
             $this->buttonList->remove('delete');

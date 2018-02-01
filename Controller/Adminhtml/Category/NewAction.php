@@ -2,7 +2,7 @@
 
 namespace Nans\Faq\Controller\Adminhtml\Category;
 
-use Nans\Faq\Helper\Constants;
+use Nans\Faq\Helper\AclNames;
 use Nans\Faq\Controller\Adminhtml\AbstractNewAction;
 
 class NewAction extends AbstractNewAction
@@ -12,6 +12,6 @@ class NewAction extends AbstractNewAction
      */
     protected function _getACLName(): string
     {
-        return Constants::ACL_CATEGORY_SAVE;
+        return AclNames::ACL_CATEGORY_SAVE;
     }
 }

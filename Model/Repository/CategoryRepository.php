@@ -6,7 +6,7 @@ use Exception;
 use Nans\Faq\Api\Repository\CategoryRepositoryInterface;
 use Nans\Faq\Api\Data\CategoryInterface;
 use Nans\Faq\Model\ResourceModel\Category as CategoryResource;
-use Nans\Model\CategoryFactory;
+use Nans\Faq\Model\CategoryFactory;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Exception\CouldNotDeleteException;

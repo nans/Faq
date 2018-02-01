@@ -3,7 +3,7 @@
 namespace Nans\Faq\Controller\Adminhtml\Category;
 
 use Magento\Backend\Model\View\Result\Page;
-use Nans\Faq\Helper\Constants;
+use Nans\Faq\Helper\AclNames;
 use Nans\Faq\Controller\Adminhtml\AbstractIndexAction;
 
 class Index extends AbstractIndexAction
@@ -23,6 +23,6 @@ class Index extends AbstractIndexAction
      */
     protected function _getACLName(): string
     {
-        return Constants::ACL_CATEGORY_VIEW;
+        return AclNames::ACL_CATEGORY_VIEW;
     }
 }

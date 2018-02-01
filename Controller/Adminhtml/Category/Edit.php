@@ -6,7 +6,7 @@ use Magento\Backend\Model\View\Result\Page;
 use Nans\Faq\Api\Data\BaseInterface;
 use Nans\Faq\Api\Repository\CategoryRepositoryInterface;
 use Nans\Faq\Controller\Adminhtml\AbstractEditAction;
-use Nans\Faq\Helper\Constants;
+use Nans\Faq\Helper\AclNames;
 
 class Edit extends AbstractEditAction
 {
@@ -15,7 +15,7 @@ class Edit extends AbstractEditAction
      */
     protected function _getACLName(): string
     {
-        return Constants::ACL_CATEGORY_VIEW;
+        return AclNames::ACL_CATEGORY_VIEW;
     }
 
     protected function _getRegisterName(): string

@@ -5,7 +5,7 @@ namespace Nans\Faq\Model\Repository;
 use Nans\Faq\Api\Data\QuestionInterface;
 use Nans\Faq\Api\Repository\QuestionRepositoryInterface;
 use Nans\Faq\Model\ResourceModel\Question as ResourceQuestion;
-use Nans\Model\QuestionFactory;
+use Nans\Faq\Model\QuestionFactory;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Exception\CouldNotDeleteException;

@@ -7,7 +7,7 @@ use Magento\Backend\Block\Widget\Form\Container;
 use Magento\Framework\Phrase;
 use Magento\Framework\Registry;
 use Nans\Faq\Api\Data\QuestionInterface;
-use Nans\Faq\Helper\Constants;
+use Nans\Faq\Helper\AclNames;
 use Nans\Faq\Model\Question;
 
 class Edit extends Container
@@ -44,7 +44,7 @@ class Edit extends Container
 
         parent::_construct();
 
-        if ($this->_isAllowedAction(Constants::ACL_QUESTION_SAVE)) {
+        if ($this->_isAllowedAction(AclNames::ACL_QUESTION_SAVE)) {
             $this->buttonList->update('save', 'label', __('Save'));
             $this->buttonList->add(
                 'saveandcontinue',
@@ -66,7 +66,7 @@ class Edit extends Container
             $this->buttonList->remove('save');
         }
 
-        if ($this->_isAllowedAction(Constants::ACL_QUESTION_DELETE)) {
+        if ($this->_isAllowedAction(AclNames::ACL_QUESTION_DELETE)) {
             $this->buttonList->update('delete', 'label', __('Delete'));
         } else {
             $this->buttonList->remove('delete');

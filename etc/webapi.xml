@@ -2,14 +2,28 @@
 <routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
     <route url="/V1/feedback/useful/:questionId/delta/:delta" method="GET">
-        <service class="Nans\Faq\Api\FeedbackInterface" method="changeUseful"/>
+        <service class="Nans\Faq\Api\FrontendInterface" method="changeUseful"/>
         <resources>
             <resource ref="anonymous"/>
         </resources>
     </route>
 
     <route url="/V1/feedback/useless/:questionId/delta/:delta" method="GET">
-        <service class="Nans\Faq\Api\FeedbackInterface" method="changeUseless"/>
+        <service class="Nans\Faq\Api\FrontendInterface" method="changeUseless"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <route url="/V1/question/:storeId" method="GET">
+        <service class="Nans\Faq\Api\FrontendInterface" method="getQuestions"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <route url="/V1/category/:storeId" method="GET">
+        <service class="Nans\Faq\Api\FrontendInterface" method="getCategories"/>
         <resources>
             <resource ref="anonymous"/>
         </resources>

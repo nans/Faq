@@ -7,7 +7,7 @@ interface BaseInterface
     /**
      * @return int
      */
-    public function getId(): int;
+    public function getId();
 
     /**
      * @return string

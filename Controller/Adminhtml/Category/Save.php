@@ -4,7 +4,7 @@ namespace Nans\Faq\Controller\Adminhtml\Category;
 
 use Nans\Faq\Api\Repository\CategoryRepositoryInterface;
 use Nans\Faq\Controller\Adminhtml\AbstractSaveAction;
-use Nans\Faq\Helper\Constants;
+use Nans\Faq\Helper\AclNames;
 use Nans\Faq\Model\Category;
 
 class Save extends AbstractSaveAction
@@ -14,7 +14,7 @@ class Save extends AbstractSaveAction
      */
     protected function _getACLName(): string
     {
-        return Constants::ACL_CATEGORY_SAVE;
+        return AclNames::ACL_CATEGORY_SAVE;
     }
 
     /**
