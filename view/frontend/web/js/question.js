@@ -8,6 +8,7 @@ define([
         return function (data) {
             var self = this;
             self.questionId = Number(data.question_id);
+            self.categoryId = Number(data.category_id);
             self.sortOrder = Number(data.sort_order);
             self.status = Number(data.status) === 1;
             self.title = data.title;

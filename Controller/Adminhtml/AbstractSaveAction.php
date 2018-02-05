@@ -6,6 +6,7 @@ use Magento\Backend\App\Action\Context;
 use Magento\Backend\Model\Session;
 use Magento\Backend\Model\View\Result\Redirect;
 use Magento\Framework\Controller\ResultInterface;
+use Magento\Framework\Model\AbstractModel;
 use Nans\Faq\Api\Data\BaseInterface;
 use Nans\Faq\Helper\Constants;
 
@@ -34,6 +35,8 @@ abstract class AbstractSaveAction extends AbstractBaseAction
             $this->_prepareData($data);
 
             $repository = $this->_objectManager->get($this->_getRepositoryClass());
+
+            /** @var BaseInterface|AbstractModel $model  */
             $model = $repository->create();
 
             $id = $this->getRequest()->getParam($this->_getIdFieldName());
@@ -70,11 +73,11 @@ abstract class AbstractSaveAction extends AbstractBaseAction
     }
 
     /**
-     * @param Object $model
+     * @param BaseInterface $model
      *
      * @return int
      */
-    protected function _getIdFromModel(Object $model): int
+    protected function _getIdFromModel(BaseInterface $model): int
     {
         /** @var BaseInterface $model */
         return $model->getId();
@@ -82,6 +85,7 @@ abstract class AbstractSaveAction extends AbstractBaseAction
 
     /**
      * @param array $data
+     * @return void
      */
     protected function _prepareData(array &$data)
     {

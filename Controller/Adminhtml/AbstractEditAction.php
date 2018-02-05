@@ -6,6 +6,7 @@ use Magento\Backend\App\Action;
 use Magento\Backend\Model\View\Result\Page;
 use Magento\Backend\Model\View\Result\Redirect;
 use Magento\Backend\Model\Session;
+use Magento\Framework\Model\AbstractModel;
 use Magento\Framework\Registry;
 use Magento\Framework\View\Result\PageFactory;
 use Nans\Faq\Api\Data\BaseInterface;
@@ -48,7 +49,7 @@ abstract class AbstractEditAction extends AbstractBaseAction
         $id = $this->getRequest()->getParam(Constants::FRONTEND_ID);
         $repository = $this->_objectManager->get($this->_getRepositoryClass());
 
-        /** @var BaseInterface $model */
+        /** @var BaseInterface|AbstractModel $model  */
         if ($id) {
             $model = $repository->getById($id);
             if (!$model->getId()) {
@@ -73,6 +74,9 @@ abstract class AbstractEditAction extends AbstractBaseAction
         return $this->_initAction($resultPage, $model);
     }
 
+    /**
+     * @return string
+     */
     abstract protected function _getRegisterName(): string;
 
     /**

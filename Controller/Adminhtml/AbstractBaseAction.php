@@ -1,15 +1,15 @@
 <?php
 
 namespace Nans\Faq\Controller\Adminhtml;
-use Magento\Backend\App\Action;
 
+use Magento\Backend\App\Action;
 
 abstract class AbstractBaseAction extends Action
 {
     /**
      * @return boolean
      */
-    protected function _isAllowed()
+    protected function _isAllowed():bool
     {
         return $this->_authorization->isAllowed($this->_getACLName());
     }

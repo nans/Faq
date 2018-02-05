@@ -11,6 +11,16 @@ define([
             self.title = data.title;
             self.sortOrder = Number(data.sort_order);
             self.status = Number(data.status) === 1;
+            self.questions = ko.observableArray([]);
+
+            self.fillQuestions = function (allQuestions) {
+                for (var i = 0; i < allQuestions.length; i++) {
+                    if (allQuestions[i].categoryId === self.categoryId) {
+                        self.questions.push(allQuestions[i]);
+                    }
+                }
+                console.log(self.questions());
+            }
         }
     }
 );

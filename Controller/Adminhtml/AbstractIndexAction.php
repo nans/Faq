@@ -38,5 +38,9 @@ abstract class AbstractIndexAction extends AbstractBaseAction
         return $resultPage;
     }
 
+    /**
+     * @param Page $resultPage
+     * @return void
+     */
     abstract protected function _setResultPageParams(Page &$resultPage);
 }

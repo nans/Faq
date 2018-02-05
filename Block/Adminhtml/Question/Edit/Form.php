@@ -179,9 +179,7 @@ class Form extends Generic
                 'title' => __('Store Views'),
                 'note' => __('Select Store Views'),
                 'required' => true,
-                'values' => $this->_systemStore->getStoreValuesForForm(
-                    false, true
-                ),
+                'values' => $this->_systemStore->getStoreValuesForForm(false, true),
             ]
         );
 
@@ -192,6 +190,7 @@ class Form extends Generic
                 'name' => Question::USEFUL,
                 'label' => __('Useful'),
                 'title' => __('Useful'),
+                'placeholder' => 0,
                 'class' => 'validate-zero-or-greater'
             ]
         );
@@ -203,6 +202,7 @@ class Form extends Generic
                 'name' => Question::USELESS,
                 'label' => __('Useless'),
                 'title' => __('Useless'),
+                'placeholder' => 0,
                 'class' => 'validate-zero-or-greater'
             ]
         );

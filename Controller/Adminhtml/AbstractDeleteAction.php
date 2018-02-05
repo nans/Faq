@@ -1,17 +1,19 @@
 <?php
 namespace Nans\Faq\Controller\Adminhtml;
 
+use Magento\Backend\Model\View\Result\Redirect;
+use Magento\Framework\Controller\ResultInterface;
 use Nans\Faq\Helper\Constants;
 
 abstract class AbstractDeleteAction extends AbstractBaseAction
 {
     /**
-     * @return \Magento\Framework\Controller\ResultInterface
+     * @return ResultInterface
      */
     public function execute()
     {
         $id = $this->getRequest()->getParam(Constants::FRONTEND_ID);
-        /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
+        /** @var Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
         if ($id) {
             try {

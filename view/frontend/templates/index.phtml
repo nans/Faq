@@ -19,5 +19,12 @@
 </script>
 
 <div id="trip-builder-wrapper" data-bind="scope: 'questions'">
-
+    <!-- ko if: dataLoaded -->
+    <!-- ko foreach: categories -->
+    <p><span data-bind="text:title"></span> - <span data-bind="text:sortOrder"></span></p>
+    <!-- ko foreach: questions -->
+    <p><span data-bind="text:title"></span> - <span data-bind="text:sortOrder"></span></p>
+    <!-- /ko -->
+    <!-- /ko -->
+    <!-- /ko -->
 </div>
