@@ -19,7 +19,7 @@ define([
             self.questionLoaded = ko.observable(false);
 
             self.dataLoaded = ko.computed(function () {
-                if(self.categoryLoaded() && self.questionLoaded()){
+                if (self.categoryLoaded() && self.questionLoaded()) {
                     self.addQuestionsToCategories();
                     return true;
                 }
@@ -30,10 +30,14 @@ define([
                 return firstRecord.sortOrder - secondRecord.sortOrder;
             };
 
+            self.getApiUrl = function () {
+                return self.baseUrl + config.apiUrl;
+            };
+
             self.getRecordsByType = function (type, callback) {
                 $.ajax(
                     {
-                        url: self.baseUrl + config.apiUrl + type + '/' + self.storeId,
+                        url: self.getApiUrl() + type + '/' + self.storeId,
                         type: "GET",
                         cache: false,
                         success: function (result) {
@@ -53,7 +57,7 @@ define([
 
             self.fillQuestions = function (data) {
                 for (var i = 0; i < data.length; i++) {
-                    self.questions.push(new question(data[i]));
+                    self.questions.push(new question(data[i], self));
                 }
                 self.questions.sort(self.sortOrder);
                 self.questionLoaded(true);
@@ -65,13 +69,13 @@ define([
             };
 
             self.addQuestionsToCategories = function () {
-                console.log('addQuestionsToCategories');
-                for(var i =0; i< self.categories().length; i++){
-                    console.log('fill category ' + i);
+                for (var i = 0; i < self.categories().length; i++) {
                     self.categories()[i].fillQuestions(self.questions());
                 }
-                console.log('result');
-                console.log(self.categories());
+            };
+
+            self.getConfig = function () {
+                return config;
             };
 
             self.fillDataByApi();

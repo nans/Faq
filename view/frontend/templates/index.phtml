@@ -8,23 +8,47 @@
             "components": {
                 "questions": {
                     "component"     : "Nans_Faq/js/faq_model",
-                    "baseUrl"       : "<?=$block->getBaseUrl()?>",
-                    "apiUrl"        : "<?=$block->getApiUrl()?>",
-                    "storeId"       : <?=$block->getStoreId()?>
+                    "baseUrl"       : "<?= $block->getBaseUrl() ?>",
+                    "apiUrl"        : "<?= $block->getApiUrl() ?>",
+                    "storeId"       : <?= $block->getStoreId() ?>
                 }
             }
         }
     }
 }
+
 </script>
 
 <div id="trip-builder-wrapper" data-bind="scope: 'questions'">
-    <!-- ko if: dataLoaded -->
-    <!-- ko foreach: categories -->
-    <p><span data-bind="text:title"></span> - <span data-bind="text:sortOrder"></span></p>
-    <!-- ko foreach: questions -->
-    <p><span data-bind="text:title"></span> - <span data-bind="text:sortOrder"></span></p>
-    <!-- /ko -->
-    <!-- /ko -->
-    <!-- /ko -->
+    <dl class="row">
+        <!-- ko if: dataLoaded -->
+        <!-- ko foreach: categories -->
+        <dt class="col-sm-3 text-uppercase"><span data-bind="text:title"></span></dt>
+        <dd class="col-sm-9">
+            <div class="container">
+                <!-- ko foreach: questions -->
+                <p data-toggle="collapse" class="text-primary"
+                   data-bind="text:title, attr: {'data-target': '#' + questionId}"></p>
+                <div class="collapse" data-bind="attr: {'id': questionId}">
+                    <div class="font-weight-normal" data-bind="html: content">
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div data-bind="click: setUseful, text: getUsefulText()"></div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div data-bind="click: setUseless, text: getUselessText()"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /ko -->
+            </div>
+        </dd>
+        <!-- /ko -->
+        <!-- /ko -->
+    </dl>
 </div>
+
+
+
+

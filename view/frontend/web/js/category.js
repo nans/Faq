@@ -19,7 +19,6 @@ define([
                         self.questions.push(allQuestions[i]);
                     }
                 }
-                console.log(self.questions());
             }
         }
     }

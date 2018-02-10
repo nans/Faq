@@ -74,7 +74,7 @@ class Question extends AbstractBaseModel implements QuestionInterface
      */
     public function setUseful(int $usefulCount)
     {
-        $this->getData(self::USEFUL, $usefulCount);
+        $this->setData(self::USEFUL, $usefulCount);
     }
 
     /**
