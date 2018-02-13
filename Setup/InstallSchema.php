@@ -44,6 +44,7 @@ class InstallSchema implements InstallSchemaInterface
         $this->_addStoreIdsColumn($table);
         $this->_addSortOrderColumn($table);
         $this->_addTimeColumns($table);
+        $this->_addSortOrderIndex($table, $setup);
         $table->setComment('FAQ Category');
         $setup->getConnection()->createTable($table);
     }
@@ -93,6 +94,7 @@ class InstallSchema implements InstallSchemaInterface
             );
         $this->_addForeignKey($table, $setup, 'category_id', $categoryTable, 'category_id');
         $this->_addTimeColumns($table);
+        $this->_addSortOrderIndex($table, $setup);
         $table->setComment('FAQ Questions');
         $setup->getConnection()->createTable($table);
     }
@@ -207,5 +209,13 @@ class InstallSchema implements InstallSchemaInterface
             $refColumn,
             Table::ACTION_CASCADE
         );
+    }
+
+    /**
+     * @param Table $table
+     * @param SchemaSetupInterface   $setup
+     */
+    private function _addSortOrderIndex(Table &$table, $setup){
+        $table->addIndex($setup->getIdxName($table->getName(), ['sort_order']), ['sort_order']);
     }
 }
