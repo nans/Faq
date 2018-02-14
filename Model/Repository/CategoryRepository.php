@@ -3,13 +3,15 @@
 namespace Nans\Faq\Model\Repository;
 
 use Exception;
+use Magento\Framework\Model\AbstractModel;
+use Magento\Framework\Exception\CouldNotSaveException;
+use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Framework\Exception\CouldNotDeleteException;
 use Nans\Faq\Api\Repository\CategoryRepositoryInterface;
 use Nans\Faq\Api\Data\CategoryInterface;
 use Nans\Faq\Model\ResourceModel\Category as CategoryResource;
 use Nans\Faq\Model\CategoryFactory;
-use Magento\Framework\Exception\CouldNotSaveException;
-use Magento\Framework\Exception\NoSuchEntityException;
-use Magento\Framework\Exception\CouldNotDeleteException;
+
 
 class CategoryRepository implements CategoryRepositoryInterface
 {
@@ -49,7 +51,7 @@ class CategoryRepository implements CategoryRepositoryInterface
      */
     public function delete(CategoryInterface $category)
     {
-        /** @var CategoryInterface|\Magento\Framework\Model\AbstractModel $category */
+        /** @var CategoryInterface|AbstractModel $category */
         $id = $category->getId();
         if(!$id){
             throw new NoSuchEntityException();
@@ -89,7 +91,7 @@ class CategoryRepository implements CategoryRepositoryInterface
         }
 
         if (!isset($this->_instances[$id])) {
-            /** @var CategoryInterface|\Magento\Framework\Model\AbstractModel $category */
+            /** @var CategoryInterface|AbstractModel $category */
             $category = $this->_factory->create();
             $this->_resource->load($category, $id);
             if (!$category->getId()) {
@@ -108,14 +110,11 @@ class CategoryRepository implements CategoryRepositoryInterface
      */
     public function save(CategoryInterface $category): CategoryInterface
     {
-        /** @var CategoryInterface|\Magento\Framework\Model\AbstractModel $category */
+        /** @var CategoryInterface|AbstractModel $category */
         try {
             $this->_resource->save($category);
         } catch (Exception $exception) {
-            throw new CouldNotSaveException(__(
-                'Could not save the record: %1',
-                $exception->getMessage()
-            ));
+            throw new CouldNotSaveException(__('Could not save the record: %1', $exception->getMessage()));
         }
         return $category;
     }

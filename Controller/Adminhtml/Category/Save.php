@@ -30,7 +30,7 @@ class Save extends AbstractSaveAction
      */
     protected function _getIdFieldName(): string
     {
-        return Category::ID;
+        return Category::KEY_ID;
     }
 
     /**
@@ -38,6 +38,6 @@ class Save extends AbstractSaveAction
      */
     protected function _prepareData(array &$data)
     {
-        $data[Category::STORE_IDS] = implode(',', $data[Category::STORE_IDS]);
+        $data[Category::KEY_STORE_IDS] = implode(',', $data[Category::KEY_STORE_IDS]);
     }
 }

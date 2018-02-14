@@ -15,6 +15,6 @@ class Category extends AbstractDb
      */
     protected function _construct()
     {
-        $this->_init(self::MAIN_TABLE, Model::ID);
+        $this->_init(self::MAIN_TABLE, Model::KEY_ID);
     }
 }

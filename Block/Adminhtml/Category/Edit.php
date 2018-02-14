@@ -40,7 +40,7 @@ class Edit extends Container
      */
     protected function _construct()
     {
-        $this->_objectId = Category::ID;
+        $this->_objectId = Category::KEY_ID;
         $this->_blockGroup = 'Nans_Faq';
         $this->_controller = 'adminhtml_category';
 

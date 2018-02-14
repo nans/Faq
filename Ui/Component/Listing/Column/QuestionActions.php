@@ -50,21 +50,21 @@ class QuestionActions extends Column
         if (isset($dataSource['data']['items'])) {
             foreach ($dataSource['data']['items'] as & $item) {
                 $name = $this->getData('name');
-                if (isset($item[Question::ID])) {
+                if (isset($item[Question::KEY_ID])) {
                     $item[$name]['edit'] = [
                         'href'  => $this->_urlBuilder->getUrl(
-                            self::PATH_EDIT, [Constants::FRONTEND_ID => $item[Question::ID]]
+                            self::PATH_EDIT, [Constants::FRONTEND_ID => $item[Question::KEY_ID]]
                         ),
                         'label' => __('Edit')
                     ];
                     $item[$name]['delete'] = [
                         'href'    => $this->_urlBuilder->getUrl(
                             self::PATH_DELETE,
-                            [Constants::FRONTEND_ID => $item[Question::ID]]
+                            [Constants::FRONTEND_ID => $item[Question::KEY_ID]]
                         ),
                         'label'   => __('Delete'),
                         'confirm' => [
-                            'title'   => __('Delete') . ' ' . $item[Question::TITLE],
+                            'title'   => __('Delete') . ' ' . $item[Question::KEY_TITLE],
                             'message' => __(
                                 'Are you sure you wan\'t to delete a record?'
                             )

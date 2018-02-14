@@ -3,12 +3,12 @@
 namespace Nans\Faq\Model;
 
 use Exception;
+use Magento\Framework\ObjectManagerInterface;
 use Nans\Faq\Api\FrontendInterface;
 use Nans\Faq\Api\Data\QuestionInterface;
 use Nans\Faq\Api\Repository\QuestionRepositoryInterface;
 use Nans\Faq\Model\ResourceModel\Category\Collection as CategoryCollection;
 use Nans\Faq\Model\ResourceModel\Question\Collection as QuestionCollection;
-use Magento\Framework\ObjectManagerInterface;
 
 class FrontendApi implements FrontendInterface
 {

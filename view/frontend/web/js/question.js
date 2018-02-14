@@ -102,10 +102,6 @@ define([
                         self.changeFeedbackByParams('useful', -1, self.removeUseful);
                     }
                 }
-
-                /* $.mage.cookies.set('faq_question_' + self.questionId + '_useless', self.useless(), {
-                 lifetime: 604800
-                 });*/
             };
 
             self.cookieUpdated = ko.computed(function () {

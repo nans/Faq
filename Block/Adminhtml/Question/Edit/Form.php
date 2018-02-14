@@ -103,14 +103,14 @@ class Form extends Generic
         );
 
         if ($model->getId()) {
-            $fieldset->addField(Question::ID, 'hidden', ['name' => Question::ID]);
+            $fieldset->addField(Question::KEY_ID, 'hidden', ['name' => Question::KEY_ID]);
         }
 
         $fieldset->addField(
-            Question::TITLE,
+            Question::KEY_TITLE,
             'text',
             [
-                'name' => Question::TITLE,
+                'name' => Question::KEY_TITLE,
                 'label' => __('Question'),
                 'title' => __('Question'),
                 'required' => true,
@@ -119,10 +119,10 @@ class Form extends Generic
         );
 
         $fieldset->addField(
-            Question::CONTENT,
+            Question::KEY_CONTENT,
             'editor',
             [
-                'name' => Question::CONTENT,
+                'name' => Question::KEY_CONTENT,
                 'label' => __('Answer'),
                 'title' => __('Answer'),
                 'required' => true,
@@ -134,12 +134,12 @@ class Form extends Generic
         );
 
         $fieldset->addField(
-            Question::CATEGORY_ID,
+            Question::KEY_CATEGORY_ID,
             'select',
             [
                 'label' => __('Category'),
                 'title' => __('Category'),
-                'name' => Question::CATEGORY_ID,
+                'name' => Question::KEY_CATEGORY_ID,
                 'required' => true,
                 'value' => ($model->getId()) ? $model->getCategoryId() : null,
                 'values' => $this->_getCategories(),
@@ -147,10 +147,10 @@ class Form extends Generic
         );
 
         $fieldset->addField(
-            Question::SORT_ORDER,
+            Question::KEY_SORT_ORDER,
             'text',
             [
-                'name' => Question::SORT_ORDER,
+                'name' => Question::KEY_SORT_ORDER,
                 'label' => __('Sort'),
                 'title' => __('Sort'),
                 'required' => true,
@@ -159,10 +159,10 @@ class Form extends Generic
         );
 
         $fieldset->addField(
-            Question::STATUS,
+            Question::KEY_STATUS,
             'select',
             [
-                'name' => Question::STATUS,
+                'name' => Question::KEY_STATUS,
                 'label' => __('Enabled'),
                 'title' => __('Enabled'),
                 'required' => true,
@@ -171,10 +171,10 @@ class Form extends Generic
         );
 
         $fieldset->addField(
-            Question::STORE_IDS,
+            Question::KEY_STORE_IDS,
             'multiselect',
             [
-                'name' => Question::STORE_IDS,
+                'name' => Question::KEY_STORE_IDS,
                 'label' => __('Store Views'),
                 'title' => __('Store Views'),
                 'note' => __('Select Store Views'),
@@ -184,10 +184,10 @@ class Form extends Generic
         );
 
         $fieldset->addField(
-            Question::USEFUL,
+            Question::KEY_USEFUL,
             'text',
             [
-                'name' => Question::USEFUL,
+                'name' => Question::KEY_USEFUL,
                 'label' => __('Useful'),
                 'title' => __('Useful'),
                 'placeholder' => 0,
@@ -196,10 +196,10 @@ class Form extends Generic
         );
 
         $fieldset->addField(
-            Question::USELESS,
+            Question::KEY_USELESS,
             'text',
             [
-                'name' => Question::USELESS,
+                'name' => Question::KEY_USELESS,
                 'label' => __('Useless'),
                 'title' => __('Useless'),
                 'placeholder' => 0,

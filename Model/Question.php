@@ -7,11 +7,23 @@ use Nans\Faq\Model\ResourceModel\Question as ResourceModel;
 
 class Question extends AbstractBaseModel implements QuestionInterface
 {
-    const ID = 'question_id';
-    const CATEGORY_ID = 'category_id';
-    const CONTENT = 'content';
-    const USEFUL = 'useful';
-    const USELESS = 'useless';
+    const KEY_ID = 'question_id';
+    const KEY_CATEGORY_ID = 'category_id';
+    const KEY_CONTENT = 'content';
+    const KEY_USEFUL = 'useful';
+    const KEY_USELESS = 'useless';
+
+    /**
+     * CMS page cache tag
+     */
+    const CACHE_TAG = 'faq_question';
+
+    /**
+     * Model cache tag for clear cache in after save and after delete
+     *
+     * @var string
+     */
+    protected $_cacheTag = self::CACHE_TAG;
 
     /**
      * Initialize resource model
@@ -28,7 +40,7 @@ class Question extends AbstractBaseModel implements QuestionInterface
      */
     public function getCategoryId(): int
     {
-        return $this->getData(self::CATEGORY_ID);
+        return $this->getData(self::KEY_CATEGORY_ID);
     }
 
     /**
@@ -38,7 +50,7 @@ class Question extends AbstractBaseModel implements QuestionInterface
      */
     public function setCategoryId(int $categoryId)
     {
-        $this->setData(self::CATEGORY_ID, $categoryId);
+        $this->setData(self::KEY_CATEGORY_ID, $categoryId);
     }
 
     /**
@@ -46,7 +58,7 @@ class Question extends AbstractBaseModel implements QuestionInterface
      */
     public function getContent(): string
     {
-        return $this->getData(self::CONTENT);
+        return $this->getData(self::KEY_CONTENT);
     }
 
     /**
@@ -56,7 +68,7 @@ class Question extends AbstractBaseModel implements QuestionInterface
      */
     public function setContent(string $content)
     {
-        $this->setData(self::CONTENT, $content);
+        $this->setData(self::KEY_CONTENT, $content);
     }
 
     /**
@@ -64,7 +76,7 @@ class Question extends AbstractBaseModel implements QuestionInterface
      */
     public function getUseful(): int
     {
-        return $this->getData(self::USEFUL);
+        return $this->getData(self::KEY_USEFUL);
     }
 
     /**
@@ -74,7 +86,7 @@ class Question extends AbstractBaseModel implements QuestionInterface
      */
     public function setUseful(int $usefulCount)
     {
-        $this->setData(self::USEFUL, $usefulCount);
+        $this->setData(self::KEY_USEFUL, $usefulCount);
     }
 
     /**
@@ -82,7 +94,7 @@ class Question extends AbstractBaseModel implements QuestionInterface
      */
     public function getUseless(): int
     {
-        return $this->getData(self::USELESS);
+        return $this->getData(self::KEY_USELESS);
     }
 
     /**
@@ -92,6 +104,16 @@ class Question extends AbstractBaseModel implements QuestionInterface
      */
     public function setUseless(int $uselessCount)
     {
-        $this->setData(self::USELESS, $uselessCount);
+        $this->setData(self::KEY_USELESS, $uselessCount);
+    }
+
+    /**
+     * Return unique ID(s) for each object in system
+     *
+     * @return string[]
+     */
+    public function getIdentities()
+    {
+        return [self::CACHE_TAG . '_' . $this->getId()];
     }
 }

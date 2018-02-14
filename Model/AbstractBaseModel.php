@@ -2,27 +2,28 @@
 
 namespace Nans\Faq\Model;
 
+use Magento\Framework\DataObject\IdentityInterface;
 use Magento\Framework\Model\AbstractModel;
 use Nans\Faq\Api\Data\BaseInterface;
 use Nans\Faq\Api\Data\ChangeDateInterface;
 use Nans\Faq\Api\Data\StatusInterface;
 
 abstract class AbstractBaseModel extends AbstractModel
-    implements BaseInterface, StatusInterface, ChangeDateInterface
+    implements BaseInterface, StatusInterface, ChangeDateInterface, IdentityInterface
 {
-    const TITLE = 'title';
-    const STATUS = 'status';
-    const STORE_IDS = 'store_ids';
-    const SORT_ORDER = 'sort_order';
-    const CREATION_TIME = 'creation_time';
-    const UPDATE_TIME = 'update_time';
+    const KEY_TITLE = 'title';
+    const KEY_STATUS = 'status';
+    const KEY_STORE_IDS = 'store_ids';
+    const KEY_SORT_ORDER = 'sort_order';
+    const KEY_CREATION_TIME = 'creation_time';
+    const KEY_UPDATE_TIME = 'update_time';
 
     /**
      * @return string
      */
     public function getCreationTime(): string
     {
-        return $this->getData(self::CREATION_TIME);
+        return $this->getData(self::KEY_CREATION_TIME);
     }
 
     /**
@@ -30,7 +31,7 @@ abstract class AbstractBaseModel extends AbstractModel
      */
     public function getUpdateTime(): string
     {
-        return $this->getData(self::UPDATE_TIME);
+        return $this->getData(self::KEY_UPDATE_TIME);
     }
 
     /**
@@ -38,7 +39,7 @@ abstract class AbstractBaseModel extends AbstractModel
      */
     public function getStatus(): int
     {
-        return $this->getData(self::STATUS);
+        return $this->getData(self::KEY_STATUS);
     }
 
     /**
@@ -48,7 +49,7 @@ abstract class AbstractBaseModel extends AbstractModel
      */
     public function setStatus(int $status)
     {
-        $this->setData(self::STATUS, $status);
+        $this->setData(self::KEY_STATUS, $status);
     }
 
     /**
@@ -72,7 +73,7 @@ abstract class AbstractBaseModel extends AbstractModel
      */
     public function getTitle(): string
     {
-        return $this->getData(self::TITLE);
+        return $this->getData(self::KEY_TITLE);
     }
 
     /**
@@ -82,7 +83,7 @@ abstract class AbstractBaseModel extends AbstractModel
      */
     public function setTitle(string $title)
     {
-        $this->setData(self::TITLE, $title);
+        $this->setData(self::KEY_TITLE, $title);
     }
 
     /**
@@ -90,7 +91,7 @@ abstract class AbstractBaseModel extends AbstractModel
      */
     public function getSortOrder(): int
     {
-        return $this->getData(self::SORT_ORDER);
+        return $this->getData(self::KEY_SORT_ORDER);
     }
 
     /**
@@ -100,7 +101,7 @@ abstract class AbstractBaseModel extends AbstractModel
      */
     public function setSortOrder(int $sortOrder)
     {
-        $this->setData(self::SORT_ORDER, $sortOrder);
+        $this->setData(self::KEY_SORT_ORDER, $sortOrder);
     }
 
     /**
@@ -108,7 +109,7 @@ abstract class AbstractBaseModel extends AbstractModel
      */
     public function getStoreIds(): string
     {
-        return $this->getData(self::STORE_IDS);
+        return $this->getData(self::KEY_STORE_IDS);
     }
 
     /**
@@ -118,7 +119,7 @@ abstract class AbstractBaseModel extends AbstractModel
      */
     public function setStoreIds(string $storeIds)
     {
-        $this->setData(self::STORE_IDS, $storeIds);
+        $this->setData(self::KEY_STORE_IDS, $storeIds);
     }
 
     /**

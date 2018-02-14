@@ -2,14 +2,15 @@
 
 namespace Nans\Faq\Model\Repository;
 
+use Exception;
+use Magento\Framework\Exception\CouldNotSaveException;
+use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Framework\Exception\CouldNotDeleteException;
+use Magento\Framework\Model\AbstractModel;
 use Nans\Faq\Api\Data\QuestionInterface;
 use Nans\Faq\Api\Repository\QuestionRepositoryInterface;
 use Nans\Faq\Model\ResourceModel\Question as ResourceQuestion;
 use Nans\Faq\Model\QuestionFactory;
-use Magento\Framework\Exception\CouldNotSaveException;
-use Magento\Framework\Exception\NoSuchEntityException;
-use Magento\Framework\Exception\CouldNotDeleteException;
-use Exception;
 
 class QuestionRepository implements QuestionRepositoryInterface
 {
@@ -50,7 +51,7 @@ class QuestionRepository implements QuestionRepositoryInterface
      */
     public function delete(QuestionInterface $question)
     {
-        /** @var QuestionInterface|\Magento\Framework\Model\AbstractModel $question */
+        /** @var QuestionInterface|AbstractModel $question */
         $id = $question->getId();
         if(!$id){
             throw new NoSuchEntityException();
@@ -90,7 +91,7 @@ class QuestionRepository implements QuestionRepositoryInterface
         }
 
         if (!isset($this->_instances[$id])) {
-            /** @var QuestionInterface|\Magento\Framework\Model\AbstractModel $question */
+            /** @var QuestionInterface|AbstractModel $question */
             $question = $this->_factory->create();
             $this->_resource->load($question, $id);
             if (!$question->getId()) {
@@ -109,14 +110,11 @@ class QuestionRepository implements QuestionRepositoryInterface
      */
     public function save(QuestionInterface $question): QuestionInterface
     {
-        /** @var QuestionInterface|\Magento\Framework\Model\AbstractModel $question */
+        /** @var QuestionInterface|AbstractModel $question */
         try {
             $this->_resource->save($question);
         } catch (Exception $exception) {
-            throw new CouldNotSaveException(__(
-                'Could not save the record: %1',
-                $exception->getMessage()
-            ));
+            throw new CouldNotSaveException(__('Could not save the record: %1', $exception->getMessage()));
         }
         return $question;
     }

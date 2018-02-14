@@ -11,7 +11,7 @@ class Collection extends AbstractCollection
     /**
      * @var string
      */
-    protected $_idFieldName = Model::ID;
+    protected $_idFieldName = Model::KEY_ID;
 
     /**
      * @return void
@@ -32,11 +32,11 @@ class Collection extends AbstractCollection
         $this->getSelect()
             ->where(
                 'FIND_IN_SET(' . $storeId
-                . ',`main_table`.`' . Model::STORE_IDS . '`)'
+                . ',`main_table`.`' . Model::KEY_STORE_IDS . '`)'
             )
-            ->orWhere('FIND_IN_SET(0,`main_table`.`' . Model::STORE_IDS . '`)');
-        $this->addOrder(Model::SORT_ORDER, self::SORT_ORDER_ASC);
-        $this->addFieldToFilter(Model::STATUS, "1");
+            ->orWhere('FIND_IN_SET(0,`main_table`.`' . Model::KEY_STORE_IDS . '`)');
+        $this->addOrder(Model::KEY_SORT_ORDER, self::SORT_ORDER_ASC);
+        $this->addFieldToFilter(Model::KEY_STATUS, "1");
         return $this;
     }
 }

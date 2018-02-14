@@ -45,9 +45,9 @@ class QuestionCategory extends Column
         $allIds = $this->_collection->getAllIds();
         if (isset($dataSource['data']['items'])) {
             foreach ($dataSource['data']['items'] as &$item) {
-                if (!empty($item[Question::CATEGORY_ID]) && in_array($item[Question::CATEGORY_ID], $allIds)) {
+                if (!empty($item[Question::KEY_CATEGORY_ID]) && in_array($item[Question::KEY_CATEGORY_ID], $allIds)) {
                     /** @var Category $category */
-                    $category = $this->_collection->getItemByColumnValue(Category::ID, $item[Question::CATEGORY_ID]);
+                    $category = $this->_collection->getItemByColumnValue(Category::KEY_ID, $item[Question::KEY_CATEGORY_ID]);
                     $item[$this->getName()] = $category->getTitle();
                 }
             }

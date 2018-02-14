@@ -38,7 +38,7 @@ class Edit extends Container
      */
     protected function _construct()
     {
-        $this->_objectId = Question::ID;
+        $this->_objectId = Question::KEY_ID;
         $this->_blockGroup = 'Nans_Faq';
         $this->_controller = 'adminhtml_question';
 

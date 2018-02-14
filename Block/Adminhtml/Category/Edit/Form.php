@@ -86,14 +86,14 @@ class Form extends Generic
         );
 
         if ($model->getId()) {
-            $fieldset->addField(Category::ID, 'hidden', ['name' => Category::ID]);
+            $fieldset->addField(Category::KEY_ID, 'hidden', ['name' => Category::KEY_ID]);
         }
 
         $fieldset->addField(
-            Category::TITLE,
+            Category::KEY_TITLE,
             'text',
             [
-                'name' => Category::TITLE,
+                'name' => Category::KEY_TITLE,
                 'label' => __('Title'),
                 'title' => __('Title'),
                 'required' => true,
@@ -102,10 +102,10 @@ class Form extends Generic
         );
 
         $fieldset->addField(
-            Category::SORT_ORDER,
+            Category::KEY_SORT_ORDER,
             'text',
             [
-                'name' => Category::SORT_ORDER,
+                'name' => Category::KEY_SORT_ORDER,
                 'label' => __('Sort'),
                 'title' => __('Sort'),
                 'required' => true,
@@ -114,10 +114,10 @@ class Form extends Generic
         );
 
         $fieldset->addField(
-            Category::STATUS,
+            Category::KEY_STATUS,
             'select',
             [
-                'name' => Category::STATUS,
+                'name' => Category::KEY_STATUS,
                 'label' => __('Enabled'),
                 'title' => __('Enabled'),
                 'required' => true,
@@ -126,10 +126,10 @@ class Form extends Generic
         );
 
         $fieldset->addField(
-            Category::STORE_IDS,
+            Category::KEY_STORE_IDS,
             'multiselect',
             [
-                'name' => Category::STORE_IDS,
+                'name' => Category::KEY_STORE_IDS,
                 'label' => __('Store Views'),
                 'title' => __('Store Views'),
                 'note' => __('Select Store Views'),
