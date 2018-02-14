@@ -48,7 +48,7 @@ abstract class AbstractSaveAction extends AbstractBaseAction
 
             try {
                 $repository->save($model);
-                $this->messageManager->addSuccessMessage(__('Saved'));
+                $this->messageManager->addSuccessMessage(__('Changes was saved.'));
                 $this->_objectManager->get(Session::class)->setFormData(false);
                 if ($this->getRequest()->getParam('back')) {
                     return $resultRedirect->setPath(

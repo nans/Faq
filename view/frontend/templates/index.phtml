@@ -20,8 +20,11 @@
 </script>
 
 <div id="trip-builder-wrapper" data-bind="scope: 'questions'">
+    <!-- ko ifnot: dataLoaded -->
+    <p><?=__('Data loading.');?></p>
+    <!-- /ko -->
+    <!-- ko if: dataLoaded -->
     <dl class="row">
-        <!-- ko if: dataLoaded -->
         <!-- ko foreach: categories -->
         <dt class="col-sm-3 text-uppercase"><span data-bind="text:title"></span></dt>
         <dd class="col-sm-9">
@@ -45,8 +48,8 @@
             </div>
         </dd>
         <!-- /ko -->
-        <!-- /ko -->
     </dl>
+    <!-- /ko -->
 </div>
 
 

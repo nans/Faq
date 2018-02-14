@@ -44,7 +44,7 @@ class InstallSchema implements InstallSchemaInterface
         $this->_addStoreIdsColumn($table);
         $this->_addSortOrderColumn($table);
         $this->_addTimeColumns($table);
-        $this->_addSortOrderIndex($table, $setup);
+        $this->_addIndexes($table, $setup);
         $table->setComment('FAQ Category');
         $setup->getConnection()->createTable($table);
     }
@@ -94,7 +94,7 @@ class InstallSchema implements InstallSchemaInterface
             );
         $this->_addForeignKey($table, $setup, 'category_id', $categoryTable, 'category_id');
         $this->_addTimeColumns($table);
-        $this->_addSortOrderIndex($table, $setup);
+        $this->_addIndexes($table, $setup);
         $table->setComment('FAQ Questions');
         $setup->getConnection()->createTable($table);
     }
@@ -213,9 +213,22 @@ class InstallSchema implements InstallSchemaInterface
 
     /**
      * @param Table $table
-     * @param SchemaSetupInterface   $setup
+     * @param SchemaSetupInterface $setup
      */
-    private function _addSortOrderIndex(Table &$table, $setup){
-        $table->addIndex($setup->getIdxName($table->getName(), ['sort_order']), ['sort_order']);
+    private function _addIndexes(Table &$table, SchemaSetupInterface $setup)
+    {
+        $this->_addIndex($table, $setup, ['sort_order']);
+        $this->_addIndex($table, $setup, ['status']);
+        $this->_addIndex($table, $setup, ['store_ids']);
+    }
+
+    /**
+     * @param Table $table
+     * @param SchemaSetupInterface $setup
+     * @param array $fields
+     */
+    private function _addIndex(Table &$table, SchemaSetupInterface $setup, array $fields)
+    {
+        $table->addIndex($setup->getIdxName($table->getName(), $fields), $fields);
     }
 }
