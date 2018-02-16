@@ -1,8 +1,8 @@
 {
-  "name": "nans/faq",
-  "description": "FAQ",
+  "name": "nans/magento2faq",
+  "description": "Magento 2 - FAQ extension",
   "require": {
-    "php": "~7.0.0"
+    "php": ">=7.0"
   },
   "license": [
     "MIT"
