@@ -2,10 +2,10 @@
 
 namespace Nans\Faq\Controller\Adminhtml\Question;
 
+use Nans\Faq\Api\Data\QuestionInterface;
 use Nans\Faq\Api\Repository\QuestionRepositoryInterface;
 use Nans\Faq\Controller\Adminhtml\AbstractSaveAction;
 use Nans\Faq\Helper\AclNames;
-use Nans\Faq\Model\Question;
 
 class Save extends AbstractSaveAction
 {
@@ -30,7 +30,7 @@ class Save extends AbstractSaveAction
      */
     protected function _getIdFieldName(): string
     {
-        return Question::KEY_ID;
+        return QuestionInterface::KEY_ID;
     }
 
     /**
@@ -38,6 +38,6 @@ class Save extends AbstractSaveAction
      */
     protected function _prepareData(array &$data)
     {
-        $data[Question::KEY_STORE_IDS] = implode(',', $data[Question::KEY_STORE_IDS]);
+        $data[QuestionInterface::KEY_STORE_IDS] = implode(',', $data[QuestionInterface::KEY_STORE_IDS]);
     }
 }

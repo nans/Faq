@@ -6,8 +6,8 @@ use Magento\Framework\View\Element\UiComponent\ContextInterface;
 use Magento\Framework\View\Element\UiComponentFactory;
 use Magento\Ui\Component\Listing\Columns\Column;
 use Magento\Framework\UrlInterface;
+use Nans\Faq\Api\Data\CategoryInterface;
 use Nans\Faq\Helper\Constants;
-use Nans\Faq\Model\Category;
 
 class CategoryActions extends Column
 {
@@ -50,21 +50,21 @@ class CategoryActions extends Column
         if (isset($dataSource['data']['items'])) {
             foreach ($dataSource['data']['items'] as & $item) {
                 $name = $this->getData('name');
-                if (isset($item[Category::KEY_ID])) {
+                if (isset($item[CategoryInterface::KEY_ID])) {
                     $item[$name]['edit'] = [
                         'href'  => $this->_urlBuilder->getUrl(
-                            self::PATH_EDIT, [Constants::FRONTEND_ID => $item[Category::KEY_ID]]
+                            self::PATH_EDIT, [Constants::FRONTEND_ID => $item[CategoryInterface::KEY_ID]]
                         ),
                         'label' => __('Edit')
                     ];
                     $item[$name]['delete'] = [
                         'href'    => $this->_urlBuilder->getUrl(
                             self::PATH_DELETE,
-                            [Constants::FRONTEND_ID => $item[Category::KEY_ID]]
+                            [Constants::FRONTEND_ID => $item[CategoryInterface::KEY_ID]]
                         ),
                         'label'   => __('Delete'),
                         'confirm' => [
-                            'title'   => __('Delete') . ' ' . $item[Category::KEY_TITLE],
+                            'title'   => __('Delete') . ' ' . $item[CategoryInterface::KEY_TITLE],
                             'message' => __(
                                 'Are you sure you wan\'t to delete a record?'
                             )

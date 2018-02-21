@@ -9,9 +9,10 @@ use Magento\Config\Model\Config\Source\Yesno;
 use Magento\Framework\Data\FormFactory;
 use Magento\Framework\Registry;
 use Magento\Store\Model\System\Store;
+use Nans\Faq\Api\Data\CategoryInterface;
+use Nans\Faq\Api\Data\QuestionInterface;
+use Nans\Faq\Api\Data\StatusInterface;
 use Nans\Faq\Model\ResourceModel\Category\Collection as CategoryCollection;
-use Nans\Faq\Model\Category;
-use Nans\Faq\Model\Question;
 
 class Form extends Generic
 {
@@ -81,7 +82,7 @@ class Form extends Generic
      */
     protected function _prepareForm()
     {
-        /** @var Question $model */
+        /** @var QuestionInterface $model */
         $model = $this->_coreRegistry->registry('faq_question');
 
         /** @var \Magento\Framework\Data\Form $form */
@@ -103,14 +104,14 @@ class Form extends Generic
         );
 
         if ($model->getId()) {
-            $fieldset->addField(Question::KEY_ID, 'hidden', ['name' => Question::KEY_ID]);
+            $fieldset->addField(QuestionInterface::KEY_ID, 'hidden', ['name' => QuestionInterface::KEY_ID]);
         }
 
         $fieldset->addField(
-            Question::KEY_TITLE,
+            QuestionInterface::KEY_TITLE,
             'text',
             [
-                'name' => Question::KEY_TITLE,
+                'name' => QuestionInterface::KEY_TITLE,
                 'label' => __('Question'),
                 'title' => __('Question'),
                 'required' => true,
@@ -119,10 +120,10 @@ class Form extends Generic
         );
 
         $fieldset->addField(
-            Question::KEY_CONTENT,
+            QuestionInterface::KEY_CONTENT,
             'editor',
             [
-                'name' => Question::KEY_CONTENT,
+                'name' => QuestionInterface::KEY_CONTENT,
                 'label' => __('Answer'),
                 'title' => __('Answer'),
                 'required' => true,
@@ -134,12 +135,12 @@ class Form extends Generic
         );
 
         $fieldset->addField(
-            Question::KEY_CATEGORY_ID,
+            QuestionInterface::KEY_CATEGORY_ID,
             'select',
             [
                 'label' => __('Category'),
                 'title' => __('Category'),
-                'name' => Question::KEY_CATEGORY_ID,
+                'name' => QuestionInterface::KEY_CATEGORY_ID,
                 'required' => true,
                 'value' => ($model->getId()) ? $model->getCategoryId() : null,
                 'values' => $this->_getCategories(),
@@ -147,10 +148,10 @@ class Form extends Generic
         );
 
         $fieldset->addField(
-            Question::KEY_SORT_ORDER,
+            QuestionInterface::KEY_SORT_ORDER,
             'text',
             [
-                'name' => Question::KEY_SORT_ORDER,
+                'name' => QuestionInterface::KEY_SORT_ORDER,
                 'label' => __('Sort'),
                 'title' => __('Sort'),
                 'required' => true,
@@ -159,10 +160,10 @@ class Form extends Generic
         );
 
         $fieldset->addField(
-            Question::KEY_STATUS,
+            StatusInterface::KEY_STATUS,
             'select',
             [
-                'name' => Question::KEY_STATUS,
+                'name' => StatusInterface::KEY_STATUS,
                 'label' => __('Enabled'),
                 'title' => __('Enabled'),
                 'required' => true,
@@ -171,10 +172,10 @@ class Form extends Generic
         );
 
         $fieldset->addField(
-            Question::KEY_STORE_IDS,
+            QuestionInterface::KEY_STORE_IDS,
             'multiselect',
             [
-                'name' => Question::KEY_STORE_IDS,
+                'name' => QuestionInterface::KEY_STORE_IDS,
                 'label' => __('Store Views'),
                 'title' => __('Store Views'),
                 'note' => __('Select Store Views'),
@@ -184,10 +185,10 @@ class Form extends Generic
         );
 
         $fieldset->addField(
-            Question::KEY_USEFUL,
+            QuestionInterface::KEY_USEFUL,
             'text',
             [
-                'name' => Question::KEY_USEFUL,
+                'name' => QuestionInterface::KEY_USEFUL,
                 'label' => __('Useful'),
                 'title' => __('Useful'),
                 'placeholder' => 0,
@@ -196,10 +197,10 @@ class Form extends Generic
         );
 
         $fieldset->addField(
-            Question::KEY_USELESS,
+            QuestionInterface::KEY_USELESS,
             'text',
             [
-                'name' => Question::KEY_USELESS,
+                'name' => QuestionInterface::KEY_USELESS,
                 'label' => __('Useless'),
                 'title' => __('Useless'),
                 'placeholder' => 0,
@@ -221,7 +222,7 @@ class Form extends Generic
     {
         $items = $this->_categoryCollection->getItems();
         $categories = [];
-        /** @var Category $item */
+        /** @var CategoryInterface $item */
         foreach ($items as $item) {
             $categories[count($categories)] = ['label' => $item->getTitle(), 'value' => $item->getId()];
         }

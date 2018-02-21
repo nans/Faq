@@ -8,7 +8,6 @@ use Magento\Framework\Phrase;
 use Magento\Framework\Registry;
 use Nans\Faq\Api\Data\CategoryInterface;
 use Nans\Faq\Helper\AclNames;
-use Nans\Faq\Model\Category;
 
 class Edit extends Container
 {
@@ -40,7 +39,7 @@ class Edit extends Container
      */
     protected function _construct()
     {
-        $this->_objectId = Category::KEY_ID;
+        $this->_objectId = CategoryInterface::KEY_ID;
         $this->_blockGroup = 'Nans_Faq';
         $this->_controller = 'adminhtml_category';
 

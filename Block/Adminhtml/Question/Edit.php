@@ -8,7 +8,6 @@ use Magento\Framework\Phrase;
 use Magento\Framework\Registry;
 use Nans\Faq\Api\Data\QuestionInterface;
 use Nans\Faq\Helper\AclNames;
-use Nans\Faq\Model\Question;
 
 class Edit extends Container
 {
@@ -38,7 +37,7 @@ class Edit extends Container
      */
     protected function _construct()
     {
-        $this->_objectId = Question::KEY_ID;
+        $this->_objectId = QuestionInterface::KEY_ID;
         $this->_blockGroup = 'Nans_Faq';
         $this->_controller = 'adminhtml_question';
 

@@ -11,13 +11,6 @@ use Nans\Faq\Api\Data\StatusInterface;
 abstract class AbstractBaseModel extends AbstractModel
     implements BaseInterface, StatusInterface, ChangeDateInterface, IdentityInterface
 {
-    const KEY_TITLE = 'title';
-    const KEY_STATUS = 'status';
-    const KEY_STORE_IDS = 'store_ids';
-    const KEY_SORT_ORDER = 'sort_order';
-    const KEY_CREATION_TIME = 'creation_time';
-    const KEY_UPDATE_TIME = 'update_time';
-
     /**
      * @return string
      */
@@ -57,7 +50,7 @@ abstract class AbstractBaseModel extends AbstractModel
      */
     public function activate()
     {
-        $this->setStatus(1);
+        $this->setStatus(self::STATUS_ACTIVE);
     }
 
     /**
@@ -65,7 +58,7 @@ abstract class AbstractBaseModel extends AbstractModel
      */
     public function deactivate()
     {
-        $this->setStatus(0);
+        $this->setStatus(self::STATUS_INACTIVE);
     }
 
     /**
@@ -127,6 +120,6 @@ abstract class AbstractBaseModel extends AbstractModel
      */
     public function isActive(): bool
     {
-        return $this->getStatus() == 1;
+        return $this->getStatus() == self::STATUS_ACTIVE;
     }
 }

@@ -3,7 +3,7 @@
 namespace Nans\Faq\Ui\Component\Listing\Column\Question;
 
 use Magento\Framework\Data\OptionSourceInterface;
-use Nans\Faq\Model\Category;
+use Nans\Faq\Api\Data\CategoryInterface;
 use Nans\Faq\Model\ResourceModel\Category\Collection;
 
 class QuestionFilterList implements OptionSourceInterface
@@ -39,7 +39,7 @@ class QuestionFilterList implements OptionSourceInterface
         if ($this->_options === null) {
             $this->_options = [];
 
-            /** @var Category $category */
+            /** @var CategoryInterface $category */
             $categories = $this->_collection->getItems();
             foreach ($categories as $category) {
                 $this->_options[] = [

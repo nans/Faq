@@ -8,7 +8,8 @@ use Magento\Config\Model\Config\Source\Yesno;
 use Magento\Framework\Data\FormFactory;
 use Magento\Framework\Registry;
 use Magento\Store\Model\System\Store;
-use Nans\Faq\Model\Category;
+use Nans\Faq\Api\Data\CategoryInterface;
+use Nans\Faq\Api\Data\StatusInterface;
 
 class Form extends Generic
 {
@@ -64,7 +65,7 @@ class Form extends Generic
      */
     protected function _prepareForm()
     {
-        /** @var Category $model */
+        /** @var CategoryInterface $model */
         $model = $this->_coreRegistry->registry('faq_category');
 
         /** @var \Magento\Framework\Data\Form $form */
@@ -86,14 +87,14 @@ class Form extends Generic
         );
 
         if ($model->getId()) {
-            $fieldset->addField(Category::KEY_ID, 'hidden', ['name' => Category::KEY_ID]);
+            $fieldset->addField(CategoryInterface::KEY_ID, 'hidden', ['name' => CategoryInterface::KEY_ID]);
         }
 
         $fieldset->addField(
-            Category::KEY_TITLE,
+            CategoryInterface::KEY_TITLE,
             'text',
             [
-                'name' => Category::KEY_TITLE,
+                'name' => CategoryInterface::KEY_TITLE,
                 'label' => __('Title'),
                 'title' => __('Title'),
                 'required' => true,
@@ -102,10 +103,10 @@ class Form extends Generic
         );
 
         $fieldset->addField(
-            Category::KEY_SORT_ORDER,
+            CategoryInterface::KEY_SORT_ORDER,
             'text',
             [
-                'name' => Category::KEY_SORT_ORDER,
+                'name' => CategoryInterface::KEY_SORT_ORDER,
                 'label' => __('Sort'),
                 'title' => __('Sort'),
                 'required' => true,
@@ -114,10 +115,10 @@ class Form extends Generic
         );
 
         $fieldset->addField(
-            Category::KEY_STATUS,
+            StatusInterface::KEY_STATUS,
             'select',
             [
-                'name' => Category::KEY_STATUS,
+                'name' => StatusInterface::KEY_STATUS,
                 'label' => __('Enabled'),
                 'title' => __('Enabled'),
                 'required' => true,
@@ -126,10 +127,10 @@ class Form extends Generic
         );
 
         $fieldset->addField(
-            Category::KEY_STORE_IDS,
+            CategoryInterface::KEY_STORE_IDS,
             'multiselect',
             [
-                'name' => Category::KEY_STORE_IDS,
+                'name' => CategoryInterface::KEY_STORE_IDS,
                 'label' => __('Store Views'),
                 'title' => __('Store Views'),
                 'note' => __('Select Store Views'),

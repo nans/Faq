@@ -4,6 +4,12 @@ namespace Nans\Faq\Api\Data;
 
 interface QuestionInterface extends BaseInterface
 {
+    const KEY_ID = 'question_id';
+    const KEY_CATEGORY_ID = 'category_id';
+    const KEY_CONTENT = 'content';
+    const KEY_USEFUL = 'useful';
+    const KEY_USELESS = 'useless';
+
     /**
      * @return int
      */

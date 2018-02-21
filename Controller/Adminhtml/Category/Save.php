@@ -2,10 +2,10 @@
 
 namespace Nans\Faq\Controller\Adminhtml\Category;
 
+use Nans\Faq\Api\Data\CategoryInterface;
 use Nans\Faq\Api\Repository\CategoryRepositoryInterface;
 use Nans\Faq\Controller\Adminhtml\AbstractSaveAction;
 use Nans\Faq\Helper\AclNames;
-use Nans\Faq\Model\Category;
 
 class Save extends AbstractSaveAction
 {
@@ -30,7 +30,7 @@ class Save extends AbstractSaveAction
      */
     protected function _getIdFieldName(): string
     {
-        return Category::KEY_ID;
+        return CategoryInterface::KEY_ID;
     }
 
     /**
@@ -38,6 +38,6 @@ class Save extends AbstractSaveAction
      */
     protected function _prepareData(array &$data)
     {
-        $data[Category::KEY_STORE_IDS] = implode(',', $data[Category::KEY_STORE_IDS]);
+        $data[CategoryInterface::KEY_STORE_IDS] = implode(',', $data[CategoryInterface::KEY_STORE_IDS]);
     }
 }

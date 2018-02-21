@@ -5,8 +5,8 @@ namespace Nans\Faq\Ui\Component\Listing\Column\Question;
 use Magento\Ui\Component\Listing\Columns\Column;
 use Magento\Framework\View\Element\UiComponentFactory;
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
-use Nans\Faq\Model\Category;
-use Nans\Faq\Model\Question;
+use Nans\Faq\Api\Data\CategoryInterface;
+use Nans\Faq\Api\Data\QuestionInterface;
 use Nans\Faq\Model\ResourceModel\Category\Collection;
 
 class QuestionCategory extends Column
@@ -45,9 +45,12 @@ class QuestionCategory extends Column
         $allIds = $this->_collection->getAllIds();
         if (isset($dataSource['data']['items'])) {
             foreach ($dataSource['data']['items'] as &$item) {
-                if (!empty($item[Question::KEY_CATEGORY_ID]) && in_array($item[Question::KEY_CATEGORY_ID], $allIds)) {
-                    /** @var Category $category */
-                    $category = $this->_collection->getItemByColumnValue(Category::KEY_ID, $item[Question::KEY_CATEGORY_ID]);
+                if (!empty($item[QuestionInterface::KEY_CATEGORY_ID]) && in_array($item[QuestionInterface::KEY_CATEGORY_ID], $allIds)) {
+                    /** @var CategoryInterface $category */
+                    $category = $this->_collection->getItemByColumnValue(
+                        CategoryInterface::KEY_ID,
+                        $item[QuestionInterface::KEY_CATEGORY_ID]
+                    );
                     $item[$this->getName()] = $category->getTitle();
                 }
             }

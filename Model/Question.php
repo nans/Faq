@@ -7,12 +7,6 @@ use Nans\Faq\Model\ResourceModel\Question as ResourceModel;
 
 class Question extends AbstractBaseModel implements QuestionInterface
 {
-    const KEY_ID = 'question_id';
-    const KEY_CATEGORY_ID = 'category_id';
-    const KEY_CONTENT = 'content';
-    const KEY_USEFUL = 'useful';
-    const KEY_USELESS = 'useless';
-
     /**
      * CMS page cache tag
      */

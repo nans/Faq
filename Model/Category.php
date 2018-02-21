@@ -7,8 +7,6 @@ use Nans\Faq\Model\ResourceModel\Category as ResourceModel;
 
 class Category extends AbstractBaseModel implements CategoryInterface
 {
-    const KEY_ID = 'category_id';
-
     /**
      * CMS page cache tag
      */

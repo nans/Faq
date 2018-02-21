@@ -4,6 +4,10 @@ namespace Nans\Faq\Api\Data;
 
 interface StatusInterface
 {
+    const KEY_STATUS = 'status';
+    const STATUS_ACTIVE = 1;
+    const STATUS_INACTIVE = 0;
+
     /**
      * @return int
      */
