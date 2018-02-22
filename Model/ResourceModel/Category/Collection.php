@@ -36,7 +36,7 @@ class Collection extends AbstractCollection
             )
             ->orWhere('FIND_IN_SET(0,`main_table`.`' . Model::KEY_STORE_IDS . '`)');
         $this->addOrder(Model::KEY_SORT_ORDER, self::SORT_ORDER_ASC);
-        $this->addFieldToFilter(Model::KEY_STATUS, "1");
+        $this->addFieldToFilter(Model::KEY_STATUS, Model::STATUS_ACTIVE);
         return $this;
     }
 }
