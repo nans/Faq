@@ -3,6 +3,7 @@ define([
         'ko',
         'category',
         'question',
+        'Nans_Faq/js/lib/bootstrap',
         'jquery/ui'
     ], function ($, ko, category, question) {
         'use strict';
