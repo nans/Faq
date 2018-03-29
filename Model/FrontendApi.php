@@ -78,10 +78,7 @@ class FrontendApi implements FrontendInterface
      */
     public function getQuestions(int $storeId): array
     {
-        /** @var QuestionCollection $questionCollection */
-        $questionCollection = $this->_objectManager->create(QuestionCollection::class);
-        $questions = $questionCollection->getDataByStoreId($storeId)->getData();
-        return $questions;
+        return $this->_getQuestionCollection()->getDataByStoreId($storeId)->getData();
     }
 
     /**
@@ -90,9 +87,22 @@ class FrontendApi implements FrontendInterface
      */
     public function getCategories(int $storeId): array
     {
-        /** @var CategoryCollection $categoryCollection */
-        $categoryCollection = $this->_objectManager->create(CategoryCollection::class);
-        $categories = $categoryCollection->getDataByStoreId($storeId)->getData();
-        return $categories;
+        return $this->_getCategoryCollection()->getDataByStoreId($storeId)->getData();
+    }
+
+    /**
+     * @return CategoryCollection
+     */
+    private function _getCategoryCollection(): CategoryCollection
+    {
+        return $this->_objectManager->create(CategoryCollection::class);
+    }
+
+    /**
+     * @return QuestionCollection
+     */
+    private function _getQuestionCollection(): QuestionCollection
+    {
+        return $this->_objectManager->create(QuestionCollection::class);
     }
 }
