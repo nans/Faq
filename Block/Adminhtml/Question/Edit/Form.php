@@ -7,6 +7,7 @@ use Magento\Backend\Block\Widget\Form\Generic;
 use Magento\Cms\Model\Wysiwyg\Config;
 use Magento\Config\Model\Config\Source\Yesno;
 use Magento\Framework\Data\FormFactory;
+use Magento\Framework\Model\AbstractModel;
 use Magento\Framework\Registry;
 use Magento\Store\Model\System\Store;
 use Nans\Faq\Api\Data\CategoryInterface;
@@ -82,7 +83,7 @@ class Form extends Generic
      */
     protected function _prepareForm()
     {
-        /** @var QuestionInterface $model */
+        /** @var QuestionInterface|AbstractModel $model */
         $model = $this->_coreRegistry->registry('faq_question');
 
         /** @var \Magento\Framework\Data\Form $form */
@@ -218,7 +219,7 @@ class Form extends Generic
     /**
      * @return array
      */
-    protected function _getCategories():array
+    protected function _getCategories(): array
     {
         $items = $this->_categoryCollection->getItems();
         $categories = [];

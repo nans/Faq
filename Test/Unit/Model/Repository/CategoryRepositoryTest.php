@@ -4,6 +4,7 @@ namespace Nans\Faq\Test\Unit\Model\Repository;
 
 use Exception;
 use PHPUnit\Framework\TestCase;
+use PHPUnit_Framework_MockObject_MockObject;
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
 use Nans\Faq\Model\Category;
 use Nans\Faq\Model\ResourceModel\Category as CategoryResource;
@@ -13,13 +14,13 @@ use Nans\Faq\Api\Data\CategoryInterface;
 
 class CategoryRepositoryTest extends TestCase
 {
-    /** @var CategoryResource */
+    /** @var CategoryResource|PHPUnit_Framework_MockObject_MockObject */
     private $_resource;
 
-    /** @var CategoryFactory */
+    /** @var CategoryFactory|PHPUnit_Framework_MockObject_MockObject */
     private $_factory;
 
-    /** @var CategoryRepository */
+    /** @var CategoryRepository|PHPUnit_Framework_MockObject_MockObject */
     private $_categoryRepository;
 
     protected function setUp()
@@ -73,7 +74,7 @@ class CategoryRepositoryTest extends TestCase
     public function testDelete()
     {
         $id = 7;
-        /** @var CategoryInterface $category */
+        /** @var CategoryInterface|PHPUnit_Framework_MockObject_MockObject $category */
         $category = $this->_getCategoryMock();
         $category->expects($this->once())->method('getId')->willReturn($id);
         $this->_categoryRepository->delete($category);

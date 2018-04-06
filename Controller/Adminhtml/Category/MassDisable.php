@@ -2,7 +2,6 @@
 
 namespace Nans\Faq\Controller\Adminhtml\Category;
 
-
 use Nans\Faq\Api\Repository\CategoryRepositoryInterface;
 use Nans\Faq\Controller\Adminhtml\AbstractMassDisable;
 use Nans\Faq\Helper\AclNames;

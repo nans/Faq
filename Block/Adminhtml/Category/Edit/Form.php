@@ -6,6 +6,7 @@ use Magento\Backend\Block\Template\Context;
 use Magento\Backend\Block\Widget\Form\Generic;
 use Magento\Config\Model\Config\Source\Yesno;
 use Magento\Framework\Data\FormFactory;
+use Magento\Framework\Model\AbstractModel;
 use Magento\Framework\Registry;
 use Magento\Store\Model\System\Store;
 use Nans\Faq\Api\Data\CategoryInterface;
@@ -65,7 +66,7 @@ class Form extends Generic
      */
     protected function _prepareForm()
     {
-        /** @var CategoryInterface $model */
+        /** @var CategoryInterface|AbstractModel $model */
         $model = $this->_coreRegistry->registry('faq_category');
 
         /** @var \Magento\Framework\Data\Form $form */
