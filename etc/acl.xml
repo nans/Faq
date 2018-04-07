@@ -3,15 +3,16 @@
     <acl>
         <resources>
             <resource id="Magento_Backend::admin">
+                <resource id="Nans_Faq::config" title="Config"/>
                 <resource id="Nans_Faq::main_content" title="FAQ">
-                        <resource id="Nans_Faq::category" title="Category">
-                            <resource id="Nans_Faq::category_save" title="Save category"/>
-                            <resource id="Nans_Faq::category_delete" title="Delete category"/>
-                        </resource>
-                        <resource id="Nans_Faq::question" title="Question">
-                            <resource id="Nans_Faq::question_save" title="Save question"/>
-                            <resource id="Nans_Faq::question_delete" title="Delete question"/>
-                        </resource>
+                    <resource id="Nans_Faq::category" title="Category">
+                        <resource id="Nans_Faq::category_save" title="Save category"/>
+                        <resource id="Nans_Faq::category_delete" title="Delete category"/>
+                    </resource>
+                    <resource id="Nans_Faq::question" title="Question">
+                        <resource id="Nans_Faq::question_save" title="Save question"/>
+                        <resource id="Nans_Faq::question_delete" title="Delete question"/>
+                    </resource>
                 </resource>
             </resource>
         </resources>
