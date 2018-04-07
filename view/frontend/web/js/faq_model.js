@@ -4,7 +4,8 @@ define([
         'category',
         'question',
         'Nans_Faq/js/lib/bootstrap',
-        'jquery/ui'
+        'jquery/ui',
+        'mage/translate'
     ], function ($, ko, category, question) {
         'use strict';
 
@@ -33,6 +34,17 @@ define([
 
             self.getApiUrl = function () {
                 return self.baseUrl + config.apiUrl;
+            };
+
+            self.getMessage = function () {
+                if (!self.dataLoaded()) {
+                    return $.mage.__('Loading');
+                } else {
+                    if (self.categories().length < 1) {
+                        return $.mage.__('Data not found');
+                    }
+                }
+                return '';
             };
 
             self.getRecordsByType = function (type, callback) {

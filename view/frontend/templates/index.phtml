@@ -19,9 +19,6 @@
 </script>
 
 <div id="faq-builder-wrapper" data-bind="scope: 'questions'">
-    <!-- ko ifnot: dataLoaded -->
-    <p><?=__('Data loading.');?></p>
-    <!-- /ko -->
     <!-- ko if: dataLoaded -->
 	<!-- ko if: categories().length > 0 -->
     <dl class="row">
@@ -33,7 +30,7 @@
                 <p data-toggle="collapse" class="text-primary"
                    data-bind="text:title, attr: {'data-target': '#' + questionId}"></p>
                 <div class="collapse" data-bind="attr: {'id': questionId}">
-                    <div class="font-weight-normal" data-bind="html: content">
+                    <div class="font-weight-normal" data-bind="html: content" style="max-width: 80%;word-wrap: break-word;">
                     </div>
                     <div class="row">
                         <div class="col-sm-3">
@@ -50,10 +47,8 @@
         <!-- /ko -->
     </dl>
     <!-- /ko -->
-	<!-- ko if: categories().length < 1 -->
-    <?=__('Data not found');?>
-    <!-- /ko -->
 	<!-- /ko -->
+    <span data-bind="text:getMessage()"></span>
 </div>
 
 

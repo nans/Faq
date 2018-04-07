@@ -2,7 +2,8 @@ define([
         'jquery',
         'ko',
         'jquery/ui',
-        'mage/cookies'
+        'mage/cookies',
+        'mage/translate'
     ], function ($, ko) {
         'use strict';
 
