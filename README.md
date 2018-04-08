@@ -2,8 +2,8 @@
 Admin can create, update, delete FAQ questions and FAQ categories.
 
 # Supported  
-Magento 2.1.x - 2.3.x
-[PHP 5.6](https://github.com/nans/Faq/tree/php5.6) 
+Magento 2.1.x - 2.3.x  
+[PHP 5.6](https://github.com/nans/Faq/tree/php5.6)  
 PHP 7.0 and higher  
 
 # Installation Instruction  
