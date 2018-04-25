@@ -29,7 +29,7 @@ class InstallSchema implements InstallSchemaInterface
     /**
      * @param SchemaSetupInterface $setup
      */
-    private function _createCategoryTable($setup)
+    private function _createCategoryTable(SchemaSetupInterface $setup)
     {
         $tableName = $setup->getTable(Constants::DB_PREFIX . 'faq_category');
 
@@ -52,7 +52,7 @@ class InstallSchema implements InstallSchemaInterface
     /**
      * @param SchemaSetupInterface $setup
      */
-    private function _createQuestionTable($setup)
+    private function _createQuestionTable(SchemaSetupInterface $setup)
     {
         $tableName = $setup->getTable(Constants::DB_PREFIX . 'faq_question');
         $categoryTable = $setup->getTable(Constants::DB_PREFIX . 'faq_category');
@@ -172,12 +172,12 @@ class InstallSchema implements InstallSchemaInterface
 
     /**
      * @param Table  $table
-     * @param string $tile
+     * @param string $title
      */
-    private function _addPrimaryIdColumn(Table &$table, string $tile)
+    private function _addPrimaryIdColumn(Table &$table, string $title)
     {
         $table->addColumn(
-            $tile, Table::TYPE_INTEGER, null,
+            $title, Table::TYPE_INTEGER, null,
             [
                 'identity' => true,
                 'nullable' => false,
