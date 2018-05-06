@@ -2,119 +2,126 @@
 
 namespace Nans\Faq\Test\Unit\Model;
 
-use Nans\Faq\Api\Data\CategoryInterface;
-use Nans\Faq\Api\Data\QuestionInterface;
 use PHPUnit\Framework\TestCase;
-use Magento\Framework\ObjectManagerInterface;
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
 use Nans\Faq\Api\Repository\QuestionRepositoryInterface;
 use Nans\Faq\Model\FrontendApi;
 use Nans\Faq\Model\ResourceModel\Category\Collection as CategoryCollection;
 use Nans\Faq\Model\ResourceModel\Question\Collection as QuestionCollection;
+use Nans\Faq\Api\Data\CategoryInterface;
+use Nans\Faq\Api\Data\QuestionInterface;
+use Nans\Faq\Model\ResourceModel\Category\CollectionFactory as CategoryCollectionFactory;
+use Nans\Faq\Model\ResourceModel\Question\CollectionFactory as QuestionCollectionFactory;
 
 class FrontendApiTest extends TestCase
 {
-    /** @var  FrontendApi */
-    private $frontendApi;
+    /** @var ObjectManager  */
+    private $objectManager;
 
-    /** @var ObjectManagerInterface */
-    private $objectManagerMock;
-
-    /** @var  QuestionRepositoryInterface */
-    private $questionRepositoryMock;
-
-    /** @var  array */
-    private $categoriesArray;
-
-    /** @var  array */
-    private $questionsArray;
-
-    private $questionId = 1;
-    private $storeId = 1;
+    const QUESTION_ID = 1;
+    const STORE_ID = 1;
 
     public function setUp()
     {
-        $objectManager = new ObjectManager($this);
-
-        $startUseful = 1;
-        $updatedUseful = 2;
-        $categoryRecord = $this->getMockBuilder(CategoryInterface::class)->disableOriginalConstructor()->getMock();
-        $questionRecord = $this->getMockBuilder(QuestionInterface::class)->disableOriginalConstructor()->getMock();
-        $questionRecord->expects($this->any())->method('getUseful')->willReturn($startUseful);
-        $questionRecord->expects($this->any())->method('setUseful')->with($updatedUseful);
-
-        $questionRecord->expects($this->any())->method('getUseless')->willReturn($startUseful);
-        $questionRecord->expects($this->any())->method('setUseless')->with($updatedUseful);
-
-        $this->categoriesArray = [$categoryRecord];
-        $this->questionsArray = [$questionRecord];
-
-        $questionCollection = $this->getMockBuilder(QuestionCollection::class)->setMethods([
-            'getDataByStoreId',
-            'getData'
-        ])->disableOriginalConstructor()
-            ->getMock();
-
-        $questionCollection
-            ->expects($this->any())
-            ->method('getDataByStoreId')
-            ->with($this->storeId)
-            ->willReturn($questionCollection);
-
-        $questionCollection
-            ->expects($this->any())
-            ->method('getData')
-            ->willReturn($this->questionsArray);
-
-
-        $categoryCollection = $this->getMockBuilder(CategoryCollection::class)->setMethods([
-            'getDataByStoreId',
-            'getData'
-        ])->disableOriginalConstructor()
-            ->getMock();
-        $categoryCollection->expects($this->any())->method('getDataByStoreId')->with($this->storeId)->willReturn($categoryCollection);
-        $categoryCollection->expects($this->any())->method('getData')->willReturn($this->categoriesArray);
-
-        $objectManagerCreateMap = [
-            [QuestionCollection::class, [], $questionCollection],
-            [CategoryCollection::class, [], $categoryCollection]
-        ];
-
-        $this->objectManagerMock = $this->getMockBuilder(ObjectManagerInterface::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $this->objectManagerMock->expects($this->any())->method('create')->will($this->returnValueMap($objectManagerCreateMap));
-
-        $this->questionRepositoryMock = $this->getMockBuilder(QuestionRepositoryInterface::class)->setMethods([
-            'getById',
-            'save'
-        ])->getMockForAbstractClass();
-        $this->questionRepositoryMock->expects($this->any())->method('getById')->with($this->questionId)->willReturn($questionRecord);
-        $this->questionRepositoryMock->expects($this->any())->method('save')->willReturn($questionRecord);
-
-
-        $this->frontendApi = $objectManager->getObject(FrontendApi::class,
-            ['_questionRepository' => $this->questionRepositoryMock, '_objectManager' => $this->objectManagerMock]);
+        $this->objectManager = new ObjectManager($this);
     }
 
     public function testGetQuestions()
     {
-        $this->assertEquals($this->questionsArray, $this->frontendApi->getQuestions($this->storeId));
+        $questionRecord = $this->getMockBuilder(QuestionInterface::class)->disableOriginalConstructor()->getMock();
+
+        $questionsArray = [$questionRecord];
+
+        $questionCollection = $this->getMockBuilder(QuestionCollection::class)->setMethods(['getDataByStoreId', 'getData'])->disableOriginalConstructor()->getMock();
+        $questionCollection->expects($this->once())->method('getDataByStoreId')->with(self::STORE_ID)->willReturn($questionCollection);
+        $questionCollection->expects($this->once())->method('getData')->willReturn($questionsArray);
+
+        $questionCollectionFactory = $this->getMockBuilder(QuestionCollectionFactory::class)->setMethods(['create'])->getMockForAbstractClass();
+        $questionCollectionFactory->expects($this->once())->method('create')->with(Array ())->willReturn($questionCollection);
+
+        /** @var FrontendApi $frontendApi */
+        $frontendApi = $this->objectManager->getObject(FrontendApi::class,
+            [
+                '_questionRepository' => $this->getMockBuilder(QuestionRepositoryInterface::class)->getMockForAbstractClass(),
+                '_categoryCollectionFactory' => $this->getMockBuilder(CategoryCollectionFactory::class)->getMockForAbstractClass(),
+                '_questionCollectionFactory' => $questionCollectionFactory
+            ]);
+
+        $this->assertEquals($questionsArray, $frontendApi->getQuestions(self::STORE_ID));
     }
 
     public function testGetCategories()
     {
-        $this->assertEquals($this->categoriesArray, $this->frontendApi->getCategories($this->storeId));
+        $categoryRecord = $this->getMockBuilder(CategoryInterface::class)->disableOriginalConstructor()->getMock();
+        $categoriesArray = [$categoryRecord];
+
+        $categoryCollection = $this->getMockBuilder(CategoryCollection::class)->setMethods([
+            'getDataByStoreId',
+            'getData'
+        ])->disableOriginalConstructor()->getMock();
+
+        $categoryCollection->expects($this->once())->method('getDataByStoreId')->with(self::STORE_ID)->willReturn($categoryCollection);
+        $categoryCollection->expects($this->once())->method('getData')->willReturn($categoriesArray);
+
+        $categoryCollectionFactory = $this->getMockBuilder(CategoryCollectionFactory::class)->setMethods(['create'])->getMockForAbstractClass();
+        $categoryCollectionFactory->expects($this->once())->method('create')->with(Array ())->willReturn($categoryCollection);
+
+        /** @var FrontendApi $frontendApi */
+        $frontendApi = $this->objectManager->getObject(FrontendApi::class,
+            [
+                '_questionRepository' => $this->getMockBuilder(QuestionRepositoryInterface::class)->getMockForAbstractClass(),
+                '_categoryCollectionFactory' => $categoryCollectionFactory,
+                '_questionCollectionFactory' => $this->getMockBuilder(QuestionCollectionFactory::class)->getMockForAbstractClass()
+            ]);
+
+        $this->assertEquals($categoriesArray, $frontendApi->getCategories(self::STORE_ID));
     }
 
     public function testChangeUseful()
     {
-        $this->assertTrue($this->frontendApi->changeUseful($this->questionId, 1));
+        $startUseful = 1;
+        $updatedUseful = 2;
+
+        $questionRecord = $this->getMockBuilder(QuestionInterface::class)->disableOriginalConstructor()->getMock();
+        $questionRecord->expects($this->once())->method('getUseful')->willReturn($startUseful);
+        $questionRecord->expects($this->once())->method('setUseful')->with($updatedUseful);
+
+        $questionRepositoryMock = $this->getMockBuilder(QuestionRepositoryInterface::class)->setMethods(['getById', 'save'])->getMockForAbstractClass();
+        $questionRepositoryMock->expects($this->once())->method('getById')->with(self::QUESTION_ID)->willReturn($questionRecord);
+        $questionRepositoryMock->expects($this->once())->method('save')->willReturn($questionRecord);
+
+        /** @var FrontendApi $frontendApi */
+        $frontendApi = $this->objectManager->getObject(FrontendApi::class,
+            [
+                '_questionRepository' => $questionRepositoryMock,
+                '_categoryCollectionFactory' =>  $this->getMockBuilder(CategoryCollectionFactory::class)->getMockForAbstractClass(),
+                '_questionCollectionFactory' => $this->getMockBuilder(QuestionCollectionFactory::class)->getMockForAbstractClass()
+            ]);
+
+        $this->assertTrue($frontendApi->changeUseful(self::QUESTION_ID, 1));
     }
 
     public function testChangeUseless()
     {
-        $this->assertTrue($this->frontendApi->changeUseless($this->questionId, 1));
+        $startUseless = 1;
+        $updatedUseless = 2;
+
+        $questionRecord = $this->getMockBuilder(QuestionInterface::class)->disableOriginalConstructor()->getMock();
+        $questionRecord->expects($this->once())->method('getUseless')->willReturn($startUseless);
+        $questionRecord->expects($this->once())->method('setUseless')->with($updatedUseless);
+
+        $questionRepositoryMock = $this->getMockBuilder(QuestionRepositoryInterface::class)->setMethods(['getById', 'save'])->getMockForAbstractClass();
+        $questionRepositoryMock->expects($this->once())->method('getById')->with(self::QUESTION_ID)->willReturn($questionRecord);
+        $questionRepositoryMock->expects($this->once())->method('save')->willReturn($questionRecord);
+
+        /** @var FrontendApi $frontendApi */
+        $frontendApi = $this->objectManager->getObject(FrontendApi::class,
+            [
+                '_questionRepository' => $questionRepositoryMock,
+                '_categoryCollectionFactory' => $this->getMockBuilder(CategoryCollectionFactory::class)->getMockForAbstractClass(),
+                '_questionCollectionFactory' => $this->getMockBuilder(QuestionCollectionFactory::class)->getMockForAbstractClass()
+            ]);
+
+        $this->assertTrue($frontendApi->changeUseless(self::QUESTION_ID, 1));
     }
 }

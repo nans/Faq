@@ -15,8 +15,6 @@ use Nans\Faq\Api\Data\StatusInterface;
 class Form extends Generic
 {
     /**
-     * Boolean options
-     *
      * @var Yesno
      */
     protected $_booleanOptions;
@@ -25,6 +23,9 @@ class Form extends Generic
      * @var Store
      */
     protected $_systemStore;
+
+    /** @var Registry  */
+    protected $_registry;
 
     /**
      * @param Context $context
@@ -44,6 +45,7 @@ class Form extends Generic
     ) {
         $this->_booleanOptions = $booleanOptions;
         $this->_systemStore = $systemStore;
+        $this->_registry = $registry;
         parent::__construct($context, $registry, $formFactory, $data);
     }
 
@@ -67,7 +69,7 @@ class Form extends Generic
     protected function _prepareForm()
     {
         /** @var CategoryInterface|AbstractModel $model */
-        $model = $this->_coreRegistry->registry('faq_category');
+        $model = $this->_registry->registry('faq_category');
 
         /** @var \Magento\Framework\Data\Form $form */
         $form = $this->_formFactory->create(

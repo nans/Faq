@@ -3,12 +3,13 @@
 namespace Nans\Faq\Model;
 
 use Exception;
-use Magento\Framework\ObjectManagerInterface;
 use Nans\Faq\Api\FrontendInterface;
 use Nans\Faq\Api\Data\QuestionInterface;
 use Nans\Faq\Api\Repository\QuestionRepositoryInterface;
 use Nans\Faq\Model\ResourceModel\Category\Collection as CategoryCollection;
 use Nans\Faq\Model\ResourceModel\Question\Collection as QuestionCollection;
+use Nans\Faq\Model\ResourceModel\Category\CollectionFactory as CategoryCollectionFactory;
+use Nans\Faq\Model\ResourceModel\Question\CollectionFactory as QuestionCollectionFactory;
 
 class FrontendApi implements FrontendInterface
 {
@@ -18,20 +19,28 @@ class FrontendApi implements FrontendInterface
     protected $_questionRepository;
 
     /**
-     * @var ObjectManagerInterface
+     * @var CategoryCollectionFactory
      */
-    protected $_objectManager;
+    private $_categoryCollectionFactory;
+
+    /**
+     * @var QuestionCollectionFactory
+     */
+    private $_questionCollectionFactory;
 
     /**
      * @param QuestionRepositoryInterface $questionRepository
-     * @param ObjectManagerInterface $objectManager
+     * @param CategoryCollectionFactory $categoryCollectionFactory
+     * @param QuestionCollectionFactory $questionCollectionFactory
      */
     public function __construct(
         QuestionRepositoryInterface $questionRepository,
-        ObjectManagerInterface $objectManager
+        CategoryCollectionFactory $categoryCollectionFactory,
+        QuestionCollectionFactory $questionCollectionFactory
     ) {
         $this->_questionRepository = $questionRepository;
-        $this->_objectManager = $objectManager;
+        $this->_categoryCollectionFactory = $categoryCollectionFactory;
+        $this->_questionCollectionFactory = $questionCollectionFactory;
     }
 
     /**
@@ -95,7 +104,7 @@ class FrontendApi implements FrontendInterface
      */
     private function _getCategoryCollection(): CategoryCollection
     {
-        return $this->_objectManager->create(CategoryCollection::class);
+        return $this->_categoryCollectionFactory->create();
     }
 
     /**
@@ -103,6 +112,6 @@ class FrontendApi implements FrontendInterface
      */
     private function _getQuestionCollection(): QuestionCollection
     {
-        return $this->_objectManager->create(QuestionCollection::class);
+        return $this->_questionCollectionFactory->create();
     }
 }

@@ -38,6 +38,11 @@ class Form extends Generic
     protected $_categoryCollection;
 
     /**
+     * @var Registry
+     */
+    private $_registry;
+
+    /**
      * @param Context $context
      * @param Registry $registry
      * @param FormFactory $formFactory
@@ -61,6 +66,7 @@ class Form extends Generic
         $this->_systemStore = $systemStore;
         $this->_wysiwygConfig = $wysiwygConfig;
         $this->_categoryCollection = $collection;
+        $this->_registry = $registry;
         parent::__construct($context, $registry, $formFactory, $data);
     }
 
@@ -84,7 +90,7 @@ class Form extends Generic
     protected function _prepareForm()
     {
         /** @var QuestionInterface|AbstractModel $model */
-        $model = $this->_coreRegistry->registry('faq_question');
+        $model = $this->_registry->registry('faq_question');
 
         /** @var \Magento\Framework\Data\Form $form */
         $form = $this->_formFactory->create(
