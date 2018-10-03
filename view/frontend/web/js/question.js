@@ -112,11 +112,11 @@ define([
             });
 
             self.getUsefulText = function () {
-                return $.mage.__('Useful') + ': ' + self.usefulCount();
+                return self.usefulCount();
             };
 
             self.getUselessText = function () {
-                return $.mage.__('Useless') + ': ' + self.uselessCount();
+                return self.uselessCount();
             };
         }
     }

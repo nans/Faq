@@ -65,6 +65,11 @@ define([
                     self.categories.push(new category(data[i]));
                 }
                 self.categories.sort(self.sortOrder);
+
+                for(var c = 0; c < self.categories().length; c++){
+                    self.categories()[c].colourClass('caption caption-red');
+                }
+
                 self.categoryLoaded(true);
             };
 

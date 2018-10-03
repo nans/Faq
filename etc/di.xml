@@ -35,6 +35,7 @@
             <argument name="resourceModel" xsi:type="string">Nans\Faq\Model\ResourceModel\Category</argument>
         </arguments>
     </virtualType>
+
     <virtualType name="Nans\Faq\Model\ResourceModel\Question\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
         <arguments>
             <argument name="mainTable" xsi:type="string">nans_faq_question</argument>

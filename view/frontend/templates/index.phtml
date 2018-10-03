@@ -1,3 +1,181 @@
+<style>
+    .contentFaq {
+        padding: 30px;
+        /*background: #f1f3fa;*/
+    }
+
+    .contentFaq .margin-bottom-30 {
+        margin-bottom: 30px;
+    }
+
+    /* Portlet */
+    .contentFaq .portlet {
+        background: #fff;
+        padding: 20px;
+    }
+
+    .contentFaq .portlet.portlet-gray {
+        background: #f7f7f7;
+    }
+
+    .contentFaq .portlet.portlet-bordered {
+        border: 1px solid #eee;
+    }
+
+    /* Portlet Title */
+    .contentFaq .portlet-title {
+        padding: 0;
+        min-height: 40px;
+        border-bottom: 1px solid #eee;
+        margin-bottom: 18px;
+    }
+
+    .contentFaq .caption {
+        float: left;
+        display: inline-block;
+        font-size: 18px;
+        line-height: 18px;
+    }
+
+    .contentFaq .caption.caption-green .caption-subject,
+    .contentFaq .caption.caption-green i {
+        color: #4db3a2;
+        font-weight: 200;
+    }
+
+    .contentFaq .caption.caption-red .caption-subject,
+    .contentFaq .caption.caption-red i {
+        color: #e26a6a;
+        font-weight: 200;
+    }
+
+    .contentFaq .caption.caption-blue .caption-subject,
+    .contentFaq .caption.caption-blue i {
+        color: #0000FF;
+        font-weight: 200;
+    }
+
+    .contentFaq .caption.caption-orange .caption-subject,
+    .contentFaq .caption.caption-orange i {
+        color: #FF8C00;
+        font-weight: 200;
+    }
+
+    .contentFaq .caption.caption-purple .caption-subject,
+    .contentFaq .caption.caption-purple i {
+        color: #8775a7;
+        font-weight: 400;
+    }
+
+    .contentFaq .caption i {
+        color: #777;
+        font-size: 15px;
+        font-weight: 300;
+        margin-top: 3px;
+    }
+
+    .contentFaq .caption-subject {
+        color: #666;
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    .contentFaq .caption-helper {
+        padding: 0;
+        margin: 0;
+        line-height: 13px;
+        color: #9eacb4;
+        font-size: 13px;
+        font-weight: 400;
+    }
+
+    /* Actions */
+    .contentFaq .actions {
+        float: right;
+        display: inline-block;
+    }
+
+    .contentFaq .actions a {
+        margin-left: 3px;
+    }
+
+    .contentFaq .actions .btn {
+        color: #666;
+        padding: 3px 9px;
+        font-size: 13px;
+        line-height: 1.5;
+        background-color: #fff;
+        border-color: #ccc;
+        border-radius: 50px;
+    }
+
+    .contentFaq .actions .btn i {
+        font-size: 12px;
+    }
+
+    .contentFaq .actions .btn:hover {
+        background: #f2f2f2;
+    }
+
+    .contentFaq .pagination > li > a,
+    .contentFaq .pagination > li > span {
+        padding: 4px 10px;
+        font-size: 12px;
+        color: #8775a7;
+        background: #f7f7f7;
+    }
+
+    .contentFaq .pagination > li:hover > a,
+    .contentFaq .pagination > li.active > a,
+    .contentFaq .pagination > li.active:hover > a {
+        color: #fff;
+        background: #8775a7;
+        border-color: #8775a7;
+    }
+
+    /* Tab */
+    .contentFaq .portlet-title > .nav-tabs {
+        background: none;
+        margin: 0;
+        float: right;
+        display: inline-block;
+        border: 0;
+    }
+
+    .contentFaq .portlet-title > .nav-tabs > li {
+        background: none;
+        margin: 0;
+        border: 0;
+    }
+
+    .contentFaq .portlet-title > .nav-tabs > li > a {
+        background: none;
+        border: 0;
+        padding: 2px 10px 13px;
+        color: #444;
+    }
+
+    .contentFaq .portlet-title > .nav-tabs > li.active,
+    .contentFaq .portlet-title > .nav-tabs > li.active:hover {
+        border-bottom: 4px solid #f3565d;
+        position: relative;
+    }
+
+    .contentFaq .portlet-title > .nav-tabs > li:hover {
+        border-bottom: 4px solid #f29b9f;
+    }
+
+    .contentFaq .portlet-title > .nav-tabs > li.active > a,
+    .contentFaq .portlet-title > .nav-tabs > li:hover > a {
+        color: #333;
+        background: #fff;
+        border: 0;
+    }
+
+    .contentFaq .actions .btn.btn-circle i {
+        font-size: 11px;
+    }
+</style>
 <?php
 /** @var \Nans\Faq\Block\Frontend\Question $block */
 ?>
@@ -17,38 +195,39 @@
     }
 }
 </script>
-
-<div id="faq-builder-wrapper" data-bind="scope: 'questions'">
-    <!-- ko if: dataLoaded -->
-	<!-- ko if: categories().length > 0 -->
-    <dl class="row">
-        <!-- ko foreach: categories -->
-        <dt class="col-sm-3 text-uppercase"><span data-bind="text:title"></span></dt>
-        <dd class="col-sm-9">
-            <div class="container">
-                <!-- ko foreach: questions -->
-                <p data-toggle="collapse" class="text-primary"
-                   data-bind="text:title, attr: {'data-target': '#' + questionId}"></p>
-                <div class="collapse" data-bind="attr: {'id': questionId}">
-                    <div class="font-weight-normal" data-bind="html: content" style="max-width: 80%;word-wrap: break-word;">
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <div data-bind="click: setUseful, text: getUsefulText()"></div>
+<div class="contentFaq" data-bind="scope: 'questions'">
+    <div class="container">
+        <!-- ko if: categories().length > 0 -->
+        <div class="row">
+            <!-- ko foreach: categories -->
+            <div class="col-md-6 margin-bottom-30">
+                <div class="portlet portlet-bordered">
+                    <div class="portlet-title">
+                        <div data-bind="css: colourClass()">
+                            <i class="glyphicon glyphicon-cog"></i>
+                            <span class="caption-subject text-uppercase" data-bind="text:title"></span>
+                            <span class="caption-helper"></span>
                         </div>
-                        <div class="col-sm-3">
-                            <div data-bind="click: setUseless, text: getUselessText()"></div>
+                        <div class="actions">
                         </div>
                     </div>
+                    <!-- ko foreach: questions -->
+                    <div class="portlet-body" data-bind="attr: {'id': questionId}">
+                        <h4 data-bind="text:title, attr: {'data-target': '#' + questionId}"></h4>
+                        <p data-bind="html: content"></p>
+                        <div class="row">
+                            <div class="col" data-bind="click: setUseful"><span style="font-size: 150%">&#9786;</span> <span data-bind="text: getUsefulText()"></span></div>
+                            <div class="col" data-bind="click: setUseless"><span style="font-size: 120%">&#9785;</span> <span data-bind="text: getUselessText()"></span></div>
+                        </div>
+                    </div>
+                    <!-- /ko -->
                 </div>
-                <!-- /ko -->
+                <!-- END Portlet PORTLET-->
             </div>
-        </dd>
+            <!-- /ko -->
+        </div>
         <!-- /ko -->
-    </dl>
-    <!-- /ko -->
-	<!-- /ko -->
-    <span data-bind="text:getMessage()"></span>
+    </div>
 </div>
 
 
