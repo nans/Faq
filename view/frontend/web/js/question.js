@@ -19,11 +19,13 @@ define([
             self.uselessCount = ko.observable(Number(data.useless));
 
             self.getCookieName = function (type) {
+
                 return 'faq_question_' + self.questionId + '_' + type;
             };
 
             self.getCookieValue = function (type) {
                 var value = $.mage.cookies.get(self.getCookieName(type));
+
                 return (value) ? value : false;
             };
 
@@ -33,17 +35,28 @@ define([
                 });
             };
 
-            self.getPortlet = function(index){
-                return 'portlet-body';
-                if(index == 0){
-                    return 'portlet-body portlet portlet-gray';
+            self.useful = ko.observable(self.getCookieValue('useful'));
+            self.useless = ko.observable(self.getCookieValue('useless'));
+
+            self.getUsefulColor = function () {
+                if (self.useful() === "true" || self.useful() === true) {
+
+                    return '#03b5d2';
                 } else {
-                    return 'portlet-body portlet portlet-green';
+
+                    return 'black';
                 }
             };
 
-            self.useful = ko.observable(self.getCookieValue('useful'));
-            self.useless = ko.observable(self.getCookieValue('useless'));
+            self.getUselessColor = function () {
+                if (self.useless() === "true" || self.useless() === true) {
+
+                    return '#03b5d2';
+                } else {
+
+                    return 'black';
+                }
+            };
 
             self.changeFeedbackByParams = function (type, delta, callback) {
                 $.ajax(
@@ -117,14 +130,17 @@ define([
             self.cookieUpdated = ko.computed(function () {
                 self.setCookieValue('useless', self.useless());
                 self.setCookieValue('useful', self.useful());
+
                 return true;
             });
 
             self.getUsefulText = function () {
+
                 return self.usefulCount();
             };
 
             self.getUselessText = function () {
+
                 return self.uselessCount();
             };
         }

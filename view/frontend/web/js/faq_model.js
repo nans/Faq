@@ -3,7 +3,6 @@ define([
         'ko',
         'category',
         'question',
-        'Nans_Faq/js/lib/bootstrap',
         'jquery/ui',
         'mage/translate'
     ], function ($, ko, category, question) {
@@ -16,6 +15,7 @@ define([
             self.storeId = config.storeId;
             self.categories = ko.observableArray([]);
             self.questions = ko.observableArray([]);
+            self.accordionList = [];
 
             self.categoryLoaded = ko.observable(false);
             self.questionLoaded = ko.observable(false);
@@ -23,27 +23,36 @@ define([
             self.dataLoaded = ko.computed(function () {
                 if (self.categoryLoaded() && self.questionLoaded()) {
                     self.addQuestionsToCategories();
+
+                    self.initAccords();
+
                     return true;
                 }
+
                 return false;
             });
 
             self.sortOrder = function (firstRecord, secondRecord) {
+
                 return firstRecord.sortOrder - secondRecord.sortOrder;
             };
 
             self.getApiUrl = function () {
+
                 return self.baseUrl + config.apiUrl;
             };
 
             self.getMessage = function () {
                 if (!self.dataLoaded()) {
+
                     return $.mage.__('Loading');
                 } else {
                     if (self.categories().length < 1) {
+
                         return $.mage.__('Data not found');
                     }
                 }
+
                 return '';
             };
 
@@ -65,11 +74,6 @@ define([
                     self.categories.push(new category(data[i]));
                 }
                 self.categories.sort(self.sortOrder);
-
-                for(var c = 0; c < self.categories().length; c++){
-                    self.categories()[c].colourClass('caption caption-red');
-                }
-
                 self.categoryLoaded(true);
             };
 
@@ -93,10 +97,21 @@ define([
             };
 
             self.getConfig = function () {
+
                 return config;
             };
 
             self.fillDataByApi();
+
+            self.initAccords = function() {
+                self.accordionList = document.querySelectorAll(".accordion a");
+                self.accordionList.forEach(item => item.addEventListener('click', toggleAccordion));
+            };
+
+            function toggleAccordion(){
+                  this.classList.toggle('active');
+                  this.nextElementSibling.classList.toggle('active');
+            }
         }
     }
 );

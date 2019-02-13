@@ -1,8 +1,10 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-    <!--<head>
-        <css src="Nans_Faq/css/bootstrap.min.css" />
-    </head>-->
+    <update handle="styles"/>
+    <head>
+        <css src="Nans_Faq::css/accordion.css"/>
+        <css src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" src_type="url"/>
+    </head>
     <body>
         <referenceContainer name="content">
             <block class="Nans\Faq\Block\Frontend\Question" template="Nans_Faq::index.phtml"/>
