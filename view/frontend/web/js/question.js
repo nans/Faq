@@ -33,6 +33,15 @@ define([
                 });
             };
 
+            self.getPortlet = function(index){
+                return 'portlet-body';
+                if(index == 0){
+                    return 'portlet-body portlet portlet-gray';
+                } else {
+                    return 'portlet-body portlet portlet-green';
+                }
+            };
+
             self.useful = ko.observable(self.getCookieValue('useful'));
             self.useless = ko.observable(self.getCookieValue('useless'));
 

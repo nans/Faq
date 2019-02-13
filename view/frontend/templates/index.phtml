@@ -18,6 +18,10 @@
         background: #f7f7f7;
     }
 
+    .contentFaq .portlet.portlet-green {
+        background: green;
+    }
+
     .contentFaq .portlet.portlet-bordered {
         border: 1px solid #eee;
     }
@@ -203,7 +207,7 @@
             <div class="col-md-6 margin-bottom-30">
                 <div class="portlet portlet-bordered">
                     <div class="portlet-title">
-                        <div data-bind="css: colourClass()">
+                        <div data-bind="css: colourClass($index())">
                             <i class="glyphicon glyphicon-cog"></i>
                             <span class="caption-subject text-uppercase" data-bind="text:title"></span>
                             <span class="caption-helper"></span>
@@ -212,7 +216,7 @@
                         </div>
                     </div>
                     <!-- ko foreach: questions -->
-                    <div class="portlet-body" data-bind="attr: {'id': questionId}">
+                    <div class="portlet-body" data-bind="attr: {'id': questionId}, css: getPortlet($index())">
                         <h4 data-bind="text:title, attr: {'data-target': '#' + questionId}"></h4>
                         <p data-bind="html: content"></p>
                         <div class="row">
