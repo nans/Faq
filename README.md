@@ -2,7 +2,7 @@
 ![Sample](https://github.com/nans/devdocs/blob/master/Faq/Frontend.png "Frontend")  
 Admin can create, update, delete FAQ questions and FAQ categories.  
 
-##Admin Panel  
+## Admin Panel  
 ![Sample](https://github.com/nans/devdocs/blob/master/Faq/Admin_Categories.png "Categories page")  
 ![Sample](https://github.com/nans/devdocs/blob/master/Faq/Admin_Category_Form.png "Category Edit Form")  
 ![Sample](https://github.com/nans/devdocs/blob/master/Faq/Admin_Questions.png "Questions Page")  
