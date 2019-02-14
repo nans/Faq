@@ -56,16 +56,16 @@
 .accordion a:hover,
 .accordion a:hover::after {
     cursor: pointer;
-    color: #03b5d2;
+    color: #1979c3;
 }
 
 .accordion a:hover::after {
-    border: 1px solid #03b5d2;
+    border: 1px solid #1979c3;
 }
 
 .accordion a.active {
-    color: #03b5d2;
-    border-bottom: 1px solid #03b5d2;
+    color: #1979c3;
+    border-bottom: 1px solid #1979c3;
 }
 
 .accordion .content {

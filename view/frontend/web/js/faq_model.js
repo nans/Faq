@@ -33,12 +33,10 @@ define([
             });
 
             self.sortOrder = function (firstRecord, secondRecord) {
-
                 return firstRecord.sortOrder - secondRecord.sortOrder;
             };
 
             self.getApiUrl = function () {
-
                 return self.baseUrl + config.apiUrl;
             };
 
@@ -97,7 +95,6 @@ define([
             };
 
             self.getConfig = function () {
-
                 return config;
             };
 

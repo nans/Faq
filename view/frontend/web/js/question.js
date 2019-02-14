@@ -19,7 +19,6 @@ define([
             self.uselessCount = ko.observable(Number(data.useless));
 
             self.getCookieName = function (type) {
-
                 return 'faq_question_' + self.questionId + '_' + type;
             };
 
@@ -41,7 +40,7 @@ define([
             self.getUsefulColor = function () {
                 if (self.useful() === "true" || self.useful() === true) {
 
-                    return '#03b5d2';
+                    return '#1979c3';
                 } else {
 
                     return 'black';
@@ -51,7 +50,7 @@ define([
             self.getUselessColor = function () {
                 if (self.useless() === "true" || self.useless() === true) {
 
-                    return '#03b5d2';
+                    return '#1979c3';
                 } else {
 
                     return 'black';
@@ -98,14 +97,13 @@ define([
             };
 
             self.setUseful = function () {
-                if (self.useful()) {
+                if (self.useful() === true || self.useful() === "true") {
                     self.useful(false);
                     self.changeFeedbackByParams('useful', -1, self.removeUseful);
                 } else {
                     self.useful(true);
                     self.changeFeedbackByParams('useful', 1, self.addUseful);
-
-                    if (self.useless()) {
+                    if (self.useless() === true || self.useless() === "true") {
                         self.useless(false);
                         self.changeFeedbackByParams('useless', -1, self.removeUseless);
                     }
@@ -113,14 +111,14 @@ define([
             };
 
             self.setUseless = function () {
-                if (self.useless()) {
+                if (self.useless() === true || self.useless() === "true") {
                     self.useless(false);
                     self.changeFeedbackByParams('useless', -1, self.removeUseless);
                 } else {
                     self.useless(true);
                     self.changeFeedbackByParams('useless', 1, self.addUseless);
 
-                    if (self.useful()) {
+                    if (self.useful() === true || self.useful() === "true") {
                         self.useful(false);
                         self.changeFeedbackByParams('useful', -1, self.removeUseful);
                     }
@@ -135,12 +133,10 @@ define([
             });
 
             self.getUsefulText = function () {
-
                 return self.usefulCount();
             };
 
             self.getUselessText = function () {
-
                 return self.uselessCount();
             };
         }
