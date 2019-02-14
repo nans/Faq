@@ -19,8 +19,6 @@ class QuestionFilterList implements OptionSourceInterface
     protected $_collection;
 
     /**
-     * QuestionFilterList constructor.
-     *
      * @param Collection $collection
      */
     public function __construct(
@@ -48,6 +46,7 @@ class QuestionFilterList implements OptionSourceInterface
                 ];
             }
         }
+
         return $this->_options;
     }
 }

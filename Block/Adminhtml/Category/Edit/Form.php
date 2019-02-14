@@ -24,7 +24,7 @@ class Form extends Generic
      */
     protected $_systemStore;
 
-    /** @var Registry  */
+    /** @var Registry */
     protected $_registry;
 
     /**
@@ -62,9 +62,8 @@ class Form extends Generic
     }
 
     /**
-     * Prepare form
-     *
      * @return $this
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
     protected function _prepareForm()
     {
@@ -75,10 +74,10 @@ class Form extends Generic
         $form = $this->_formFactory->create(
             [
                 'data' => [
-                    'id' => 'edit_form',
+                    'id'     => 'edit_form',
                     'action' => $this->getData('action'),
-                    'method' => 'post'
-                ]
+                    'method' => 'post',
+                ],
             ]
         );
 
@@ -97,11 +96,11 @@ class Form extends Generic
             CategoryInterface::KEY_TITLE,
             'text',
             [
-                'name' => CategoryInterface::KEY_TITLE,
-                'label' => __('Title'),
-                'title' => __('Title'),
+                'name'     => CategoryInterface::KEY_TITLE,
+                'label'    => __('Title'),
+                'title'    => __('Title'),
                 'required' => true,
-                'class' => 'validate-no-empty'
+                'class'    => 'validate-no-empty',
             ]
         );
 
@@ -109,11 +108,11 @@ class Form extends Generic
             CategoryInterface::KEY_SORT_ORDER,
             'text',
             [
-                'name' => CategoryInterface::KEY_SORT_ORDER,
-                'label' => __('Sort'),
-                'title' => __('Sort'),
+                'name'     => CategoryInterface::KEY_SORT_ORDER,
+                'label'    => __('Sort'),
+                'title'    => __('Sort'),
                 'required' => true,
-                'class' => 'validate-greater-than-zero'
+                'class'    => 'validate-greater-than-zero',
             ]
         );
 
@@ -121,11 +120,11 @@ class Form extends Generic
             StatusInterface::KEY_STATUS,
             'select',
             [
-                'name' => StatusInterface::KEY_STATUS,
-                'label' => __('Enabled'),
-                'title' => __('Enabled'),
+                'name'     => StatusInterface::KEY_STATUS,
+                'label'    => __('Enabled'),
+                'title'    => __('Enabled'),
                 'required' => true,
-                'values' => $this->_booleanOptions->toOptionArray(),
+                'values'   => $this->_booleanOptions->toOptionArray(),
             ]
         );
 
@@ -133,12 +132,12 @@ class Form extends Generic
             CategoryInterface::KEY_STORE_IDS,
             'multiselect',
             [
-                'name' => CategoryInterface::KEY_STORE_IDS,
-                'label' => __('Store Views'),
-                'title' => __('Store Views'),
-                'note' => __('Select Store Views'),
+                'name'     => CategoryInterface::KEY_STORE_IDS,
+                'label'    => __('Store Views'),
+                'title'    => __('Store Views'),
+                'note'     => __('Select Store Views'),
                 'required' => true,
-                'values' => $this->_systemStore->getStoreValuesForForm(false, true),
+                'values'   => $this->_systemStore->getStoreValuesForForm(false, true),
             ]
         );
 

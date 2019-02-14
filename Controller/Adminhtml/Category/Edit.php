@@ -32,9 +32,8 @@ class Edit extends AbstractEditAction
     }
 
     /**
-     * @param Page          $resultPage
+     * @param Page $resultPage
      * @param BaseInterface $model
-     *
      * @return Page
      */
     protected function _initAction(Page $resultPage, BaseInterface $model)
@@ -50,6 +49,7 @@ class Edit extends AbstractEditAction
         );
         $resultPage->getConfig()->getTitle()->prepend(__('Category'));
         $resultPage->getConfig()->getTitle()->prepend($model->getId() ? $model->getTitle() : __('New category'));
+
         return $resultPage;
     }
 

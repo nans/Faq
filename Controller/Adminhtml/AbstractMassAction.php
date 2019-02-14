@@ -50,6 +50,7 @@ abstract class AbstractMassAction extends AbstractBaseAction
 
         /** @var Redirect $resultRedirect */
         $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
+
         return $resultRedirect->setPath('*/*/');
     }
 
@@ -61,22 +62,22 @@ abstract class AbstractMassAction extends AbstractBaseAction
     /**
      * @return string
      */
-    abstract protected function _getCollectionClass():string ;
+    abstract protected function _getCollectionClass(): string;
 
     /**
      * @param int $collectionSize
      * @return Phrase
      */
-    abstract protected function _getSuccessMessage(int $collectionSize): Phrase ;
+    abstract protected function _getSuccessMessage(int $collectionSize): Phrase;
 
     /**
      * @param Object $item
      * @return bool
      */
-    abstract protected function _updateItem(&$item):bool ;
+    abstract protected function _updateItem(&$item): bool;
 
     /**
      * @return string
      */
-    abstract protected function _getRepositoryClass():string ;
+    abstract protected function _getRepositoryClass(): string;
 }

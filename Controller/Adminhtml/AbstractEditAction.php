@@ -26,8 +26,8 @@ abstract class AbstractEditAction extends AbstractBaseAction
 
     /**
      * @param Action\Context $context
-     * @param PageFactory    $resultPageFactory
-     * @param Registry       $registry
+     * @param PageFactory $resultPageFactory
+     * @param Registry $registry
      */
     public function __construct(
         Action\Context $context,
@@ -49,13 +49,14 @@ abstract class AbstractEditAction extends AbstractBaseAction
         $id = $this->getRequest()->getParam(Constants::FRONTEND_ID);
         $repository = $this->_objectManager->get($this->_getRepositoryClass());
 
-        /** @var BaseInterface|AbstractModel $model  */
+        /** @var BaseInterface|AbstractModel $model */
         if ($id) {
             $model = $repository->getById($id);
             if (!$model->getId()) {
                 $this->messageManager->addErrorMessage(__('This record no longer exists.'));
                 /** @var Redirect $resultRedirect */
                 $resultRedirect = $this->resultRedirectFactory->create();
+
                 return $resultRedirect->setPath('*/*/');
             }
         } else {
@@ -71,6 +72,7 @@ abstract class AbstractEditAction extends AbstractBaseAction
 
         /** @var Page $resultPage */
         $resultPage = $this->_resultPageFactory->create();
+
         return $this->_initAction($resultPage, $model);
     }
 
@@ -80,9 +82,8 @@ abstract class AbstractEditAction extends AbstractBaseAction
     abstract protected function _getRegisterName(): string;
 
     /**
-     * @param Page          $resultPage
+     * @param Page $resultPage
      * @param BaseInterface $model
-     *
      * @return Page
      */
     abstract protected function _initAction(Page $resultPage, BaseInterface $model);

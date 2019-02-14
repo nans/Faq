@@ -26,6 +26,7 @@ abstract class AbstractMassEnable extends AbstractMassAction
         try {
             $item->activate();
             $this->_getRepository()->save($item);
+
             return true;
         } catch (Exception $exception) {
             return false;

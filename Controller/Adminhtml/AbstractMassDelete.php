@@ -15,6 +15,7 @@ abstract class AbstractMassDelete extends AbstractMassAction
     {
         try {
             $this->_getRepository()->delete($item);
+
             return true;
         } catch (Exception $exception) {
             return false;

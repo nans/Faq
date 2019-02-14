@@ -55,6 +55,7 @@ class QuestionCategory extends Column
                 }
             }
         }
+
         return $dataSource;
     }
 }

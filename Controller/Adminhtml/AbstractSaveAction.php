@@ -36,7 +36,7 @@ abstract class AbstractSaveAction extends AbstractBaseAction
 
             $repository = $this->_objectManager->get($this->_getRepositoryClass());
 
-            /** @var BaseInterface|AbstractModel $model  */
+            /** @var BaseInterface|AbstractModel $model */
             $model = $repository->create();
 
             $id = $this->getRequest()->getParam($this->_getIdFieldName());
@@ -57,6 +57,7 @@ abstract class AbstractSaveAction extends AbstractBaseAction
                          '_current'             => true]
                     );
                 }
+
                 return $resultRedirect->setPath('*/*/');
             } catch (\Exception $e) {
                 $this->messageManager->addExceptionMessage(
@@ -64,17 +65,18 @@ abstract class AbstractSaveAction extends AbstractBaseAction
                 );
             }
             $this->_getSession()->setFormData($data);
+
             return $resultRedirect->setPath(
                 '*/*/edit',
                 [Constants::FRONTEND_ID => $this->getRequest()->getParam($this->_getIdFieldName())]
             );
         }
+
         return $resultRedirect->setPath('*/*/');
     }
 
     /**
      * @param BaseInterface $model
-     *
      * @return int
      */
     protected function _getIdFromModel(BaseInterface $model): int

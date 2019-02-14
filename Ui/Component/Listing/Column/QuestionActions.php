@@ -19,8 +19,6 @@ class QuestionActions extends Column
     protected $_urlBuilder;
 
     /**
-     * QuestionActions constructor.
-     *
      * @param ContextInterface   $context
      * @param UiComponentFactory $uiComponentFactory
      * @param UrlInterface       $urlBuilder
@@ -73,6 +71,7 @@ class QuestionActions extends Column
                 }
             }
         }
+
         return $dataSource;
     }
 }

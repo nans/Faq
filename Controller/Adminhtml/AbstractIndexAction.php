@@ -14,7 +14,7 @@ abstract class AbstractIndexAction extends AbstractBaseAction
     protected $_resultPageFactory;
 
     /**
-     * @param Context     $context
+     * @param Context $context
      * @param PageFactory $resultPageFactory
      */
     public function __construct(
@@ -35,6 +35,7 @@ abstract class AbstractIndexAction extends AbstractBaseAction
         /** @var Page $resultPage */
         $resultPage = $this->_resultPageFactory->create();
         $this->_setResultPageParams($resultPage);
+
         return $resultPage;
     }
 

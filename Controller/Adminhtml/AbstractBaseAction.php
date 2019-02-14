@@ -9,7 +9,7 @@ abstract class AbstractBaseAction extends Action
     /**
      * @return boolean
      */
-    protected function _isAllowed():bool
+    protected function _isAllowed(): bool
     {
         return $this->_authorization->isAllowed($this->_getACLName());
     }
@@ -17,5 +17,5 @@ abstract class AbstractBaseAction extends Action
     /**
      * @return string
      */
-    abstract protected function _getACLName():string ;
+    abstract protected function _getACLName(): string;
 }

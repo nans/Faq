@@ -16,17 +16,17 @@ class FrontendApi implements FrontendInterface
     /**
      * @var QuestionRepositoryInterface
      */
-    protected $_questionRepository;
+    protected $questionRepository;
 
     /**
      * @var CategoryCollectionFactory
      */
-    private $_categoryCollectionFactory;
+    protected $categoryCollectionFactory;
 
     /**
      * @var QuestionCollectionFactory
      */
-    private $_questionCollectionFactory;
+    protected $questionCollectionFactory;
 
     /**
      * @param QuestionRepositoryInterface $questionRepository
@@ -38,9 +38,9 @@ class FrontendApi implements FrontendInterface
         CategoryCollectionFactory $categoryCollectionFactory,
         QuestionCollectionFactory $questionCollectionFactory
     ) {
-        $this->_questionRepository = $questionRepository;
-        $this->_categoryCollectionFactory = $categoryCollectionFactory;
-        $this->_questionCollectionFactory = $questionCollectionFactory;
+        $this->questionRepository = $questionRepository;
+        $this->categoryCollectionFactory = $categoryCollectionFactory;
+        $this->questionCollectionFactory = $questionCollectionFactory;
     }
 
     /**
@@ -53,11 +53,13 @@ class FrontendApi implements FrontendInterface
     {
         try {
             /** @var QuestionInterface $question */
-            $question = $this->_questionRepository->getById($questionId);
+            $question = $this->questionRepository->getById($questionId);
             $question->setUseless($question->getUseless() + $delta);
-            $this->_questionRepository->save($question);
+            $this->questionRepository->save($question);
+
             return true;
         } catch (Exception $exception) {
+
             return false;
         }
     }
@@ -72,11 +74,13 @@ class FrontendApi implements FrontendInterface
     {
         try {
             /** @var QuestionInterface $question */
-            $question = $this->_questionRepository->getById($questionId);
+            $question = $this->questionRepository->getById($questionId);
             $question->setUseful($question->getUseful() + $delta);
-            $this->_questionRepository->save($question);
+            $this->questionRepository->save($question);
+
             return true;
         } catch (Exception $exception) {
+
             return false;
         }
     }
@@ -104,7 +108,7 @@ class FrontendApi implements FrontendInterface
      */
     private function _getCategoryCollection(): CategoryCollection
     {
-        return $this->_categoryCollectionFactory->create();
+        return $this->categoryCollectionFactory->create();
     }
 
     /**
@@ -112,6 +116,6 @@ class FrontendApi implements FrontendInterface
      */
     private function _getQuestionCollection(): QuestionCollection
     {
-        return $this->_questionCollectionFactory->create();
+        return $this->questionCollectionFactory->create();
     }
 }

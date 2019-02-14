@@ -48,16 +48,16 @@ class Edit extends Container
             $this->buttonList->add(
                 'saveandcontinue',
                 [
-                    'label' => __('Save and Continue Edit'),
-                    'class' => 'save',
+                    'label'          => __('Save and Continue Edit'),
+                    'class'          => 'save',
                     'data_attribute' => [
                         'mage-init' => [
                             'button' => [
-                                'event' => 'saveAndContinueEdit',
-                                'target' => '#edit_form'
+                                'event'  => 'saveAndContinueEdit',
+                                'target' => '#edit_form',
                             ],
                         ],
-                    ]
+                    ],
                 ],
                 -100
             );
@@ -88,10 +88,9 @@ class Edit extends Container
 
     /**
      * @param string $resourceId
-     *
      * @return bool
      */
-    protected function _isAllowedAction(string $resourceId):bool
+    protected function _isAllowedAction(string $resourceId): bool
     {
         return $this->_authorization->isAllowed($resourceId);
     }
@@ -99,7 +98,7 @@ class Edit extends Container
     /**
      * @return string
      */
-    protected function _getSaveAndContinueUrl():string
+    protected function _getSaveAndContinueUrl(): string
     {
         return $this->getUrl(
             'faq/*/save',

@@ -19,8 +19,6 @@ class CategoryActions extends Column
     protected $_urlBuilder;
 
     /**
-     * CategoryActions constructor.
-     *
      * @param ContextInterface   $context
      * @param UiComponentFactory $uiComponentFactory
      * @param UrlInterface       $urlBuilder

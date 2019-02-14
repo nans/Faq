@@ -12,8 +12,6 @@ use Nans\Faq\Helper\AclNames;
 class Edit extends Container
 {
     /**
-     * Core registry
-     *
      * @var Registry
      */
     protected $_coreRegistry = null;
@@ -33,8 +31,6 @@ class Edit extends Container
     }
 
     /**
-     * Initialize edit block
-     *
      * @return void
      */
     protected function _construct()
@@ -50,16 +46,16 @@ class Edit extends Container
             $this->buttonList->add(
                 'saveandcontinue',
                 [
-                    'label' => __('Save and Continue Edit'),
-                    'class' => 'save',
+                    'label'          => __('Save and Continue Edit'),
+                    'class'          => 'save',
                     'data_attribute' => [
                         'mage-init' => [
                             'button' => [
-                                'event' => 'saveAndContinueEdit',
-                                'target' => '#edit_form'
+                                'event'  => 'saveAndContinueEdit',
+                                'target' => '#edit_form',
                             ],
                         ],
-                    ]
+                    ],
                 ],
                 -100
             );
@@ -79,7 +75,7 @@ class Edit extends Container
      *
      * @return Phrase
      */
-    public function getHeaderText():Phrase
+    public function getHeaderText(): Phrase
     {
         /** @var CategoryInterface $model */
         $model = $this->_coreRegistry->registry('faq_category');
@@ -92,10 +88,9 @@ class Edit extends Container
 
     /**
      * @param string $resourceId
-     *
      * @return bool
      */
-    protected function _isAllowedAction(string $resourceId):bool
+    protected function _isAllowedAction(string $resourceId): bool
     {
         return $this->_authorization->isAllowed($resourceId);
     }
@@ -103,7 +98,7 @@ class Edit extends Container
     /**
      * @return string
      */
-    protected function _getSaveAndContinueUrl():string
+    protected function _getSaveAndContinueUrl(): string
     {
         return $this->getUrl(
             'faq/*/save',

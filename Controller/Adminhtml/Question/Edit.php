@@ -8,7 +8,6 @@ use Nans\Faq\Api\Repository\QuestionRepositoryInterface;
 use Nans\Faq\Controller\Adminhtml\AbstractEditAction;
 use Nans\Faq\Helper\AclNames;
 
-
 class Edit extends AbstractEditAction
 {
     /**
@@ -35,7 +34,6 @@ class Edit extends AbstractEditAction
     /**
      * @param Page $resultPage
      * @param BaseInterface $model
-     *
      * @return Page
      */
     protected function _initAction(Page $resultPage, BaseInterface $model)
@@ -52,6 +50,7 @@ class Edit extends AbstractEditAction
         $resultPage->getConfig()->getTitle()->prepend(
             $model->getId() ? $model->getTitle() : __('New question')
         );
+
         return $resultPage;
     }
 }

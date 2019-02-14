@@ -2,6 +2,7 @@
 
 namespace Nans\Faq\Block\Frontend;
 
+use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\View\Element\Template\Context;
 use Magento\Framework\View\Element\Template;
 use Magento\Store\Model\StoreManagerInterface;
@@ -29,6 +30,7 @@ class Question extends Template
 
     /**
      * @return int
+     * @throws NoSuchEntityException
      */
     public function getStoreId(): int
     {

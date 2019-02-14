@@ -96,10 +96,10 @@ class Form extends Generic
         $form = $this->_formFactory->create(
             [
                 'data' => [
-                    'id' => 'edit_form',
+                    'id'     => 'edit_form',
                     'action' => $this->getData('action'),
-                    'method' => 'post'
-                ]
+                    'method' => 'post',
+                ],
             ]
         );
 
@@ -118,11 +118,11 @@ class Form extends Generic
             QuestionInterface::KEY_TITLE,
             'text',
             [
-                'name' => QuestionInterface::KEY_TITLE,
-                'label' => __('Question'),
-                'title' => __('Question'),
+                'name'     => QuestionInterface::KEY_TITLE,
+                'label'    => __('Question'),
+                'title'    => __('Question'),
                 'required' => true,
-                'class' => 'validate-no-empty'
+                'class'    => 'validate-no-empty',
             ]
         );
 
@@ -130,14 +130,14 @@ class Form extends Generic
             QuestionInterface::KEY_CONTENT,
             'editor',
             [
-                'name' => QuestionInterface::KEY_CONTENT,
-                'label' => __('Answer'),
-                'title' => __('Answer'),
+                'name'     => QuestionInterface::KEY_CONTENT,
+                'label'    => __('Answer'),
+                'title'    => __('Answer'),
                 'required' => true,
-                'rows' => '5',
-                'cols' => '30',
-                'wysiwyg' => true,
-                'config' => $this->_wysiwygConfig->getConfig()
+                'rows'     => '5',
+                'cols'     => '30',
+                'wysiwyg'  => true,
+                'config'   => $this->_wysiwygConfig->getConfig(),
             ]
         );
 
@@ -145,12 +145,12 @@ class Form extends Generic
             QuestionInterface::KEY_CATEGORY_ID,
             'select',
             [
-                'label' => __('Category'),
-                'title' => __('Category'),
-                'name' => QuestionInterface::KEY_CATEGORY_ID,
+                'label'    => __('Category'),
+                'title'    => __('Category'),
+                'name'     => QuestionInterface::KEY_CATEGORY_ID,
                 'required' => true,
-                'value' => ($model->getId()) ? $model->getCategoryId() : null,
-                'values' => $this->_getCategories(),
+                'value'    => ($model->getId()) ? $model->getCategoryId() : null,
+                'values'   => $this->_getCategories(),
             ]
         );
 
@@ -158,11 +158,11 @@ class Form extends Generic
             QuestionInterface::KEY_SORT_ORDER,
             'text',
             [
-                'name' => QuestionInterface::KEY_SORT_ORDER,
-                'label' => __('Sort'),
-                'title' => __('Sort'),
+                'name'     => QuestionInterface::KEY_SORT_ORDER,
+                'label'    => __('Sort'),
+                'title'    => __('Sort'),
                 'required' => true,
-                'class' => 'validate-greater-than-zero'
+                'class'    => 'validate-greater-than-zero',
             ]
         );
 
@@ -170,11 +170,11 @@ class Form extends Generic
             StatusInterface::KEY_STATUS,
             'select',
             [
-                'name' => StatusInterface::KEY_STATUS,
-                'label' => __('Enabled'),
-                'title' => __('Enabled'),
+                'name'     => StatusInterface::KEY_STATUS,
+                'label'    => __('Enabled'),
+                'title'    => __('Enabled'),
                 'required' => true,
-                'values' => $this->_booleanOptions->toOptionArray(),
+                'values'   => $this->_booleanOptions->toOptionArray(),
             ]
         );
 
@@ -182,12 +182,12 @@ class Form extends Generic
             QuestionInterface::KEY_STORE_IDS,
             'multiselect',
             [
-                'name' => QuestionInterface::KEY_STORE_IDS,
-                'label' => __('Store Views'),
-                'title' => __('Store Views'),
-                'note' => __('Select Store Views'),
+                'name'     => QuestionInterface::KEY_STORE_IDS,
+                'label'    => __('Store Views'),
+                'title'    => __('Store Views'),
+                'note'     => __('Select Store Views'),
                 'required' => true,
-                'values' => $this->_systemStore->getStoreValuesForForm(false, true),
+                'values'   => $this->_systemStore->getStoreValuesForForm(false, true),
             ]
         );
 
@@ -195,11 +195,11 @@ class Form extends Generic
             QuestionInterface::KEY_USEFUL,
             'text',
             [
-                'name' => QuestionInterface::KEY_USEFUL,
-                'label' => __('Useful'),
-                'title' => __('Useful'),
+                'name'        => QuestionInterface::KEY_USEFUL,
+                'label'       => __('Useful'),
+                'title'       => __('Useful'),
                 'placeholder' => 0,
-                'class' => 'validate-zero-or-greater'
+                'class'       => 'validate-zero-or-greater',
             ]
         );
 
@@ -207,11 +207,11 @@ class Form extends Generic
             QuestionInterface::KEY_USELESS,
             'text',
             [
-                'name' => QuestionInterface::KEY_USELESS,
-                'label' => __('Useless'),
-                'title' => __('Useless'),
+                'name'        => QuestionInterface::KEY_USELESS,
+                'label'       => __('Useless'),
+                'title'       => __('Useless'),
                 'placeholder' => 0,
-                'class' => 'validate-zero-or-greater'
+                'class'       => 'validate-zero-or-greater',
             ]
         );
 
@@ -233,6 +233,7 @@ class Form extends Generic
         foreach ($items as $item) {
             $categories[count($categories)] = ['label' => $item->getTitle(), 'value' => $item->getId()];
         }
+
         return $categories;
     }
 }

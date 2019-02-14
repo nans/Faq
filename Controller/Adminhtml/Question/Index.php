@@ -8,7 +8,6 @@ use Nans\Faq\Controller\Adminhtml\AbstractIndexAction;
 
 class Index extends AbstractIndexAction
 {
-
     protected function _setResultPageParams(Page &$resultPage)
     {
         $resultPage->setActiveMenu('Nans_Faq::question');
