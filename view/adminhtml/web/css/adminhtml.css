@@ -1,0 +1,5 @@
+.admin__menu .item-faq-main-content.parent.level-0 > a:before {
+  content: url('../images/faq-icon.png');
+}
+
+

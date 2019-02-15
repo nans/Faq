@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
-        <add id="Nans_Faq::main_content" title="FAQ" module="Nans_Faq" sortOrder="60" resource="Nans_Faq::main_content"/>
-        <add id="Nans_Faq::question" title="Questions" module="Nans_Faq" sortOrder="61" parent="Nans_Faq::main_content" action="faq/question" resource="Nans_Faq::question"/>
-        <add id="Nans_Faq::category" title="Categories" module="Nans_Faq" sortOrder="62" parent="Nans_Faq::main_content" action="faq/category" resource="Nans_Faq::category"/>
+        <add id="Nans_Faq::faq_main_content" title="FAQ" module="Nans_Faq" sortOrder="60" resource="Nans_Faq::main_content"/>
+        <add id="Nans_Faq::question" title="Questions" module="Nans_Faq" sortOrder="61" parent="Nans_Faq::faq_main_content" action="faq/question" resource="Nans_Faq::question"/>
+        <add id="Nans_Faq::category" title="Categories" module="Nans_Faq" sortOrder="62" parent="Nans_Faq::faq_main_content" action="faq/category" resource="Nans_Faq::category"/>
     </menu>
 </config>
