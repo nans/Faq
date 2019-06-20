@@ -24,6 +24,9 @@ define([
                 if (self.categoryLoaded() && self.questionLoaded()) {
                     self.addQuestionsToCategories();
 
+                    $('.container_faq').css('display','');
+                    $('#initial_message').hide();
+
                     self.initAccords();
 
                     return true;

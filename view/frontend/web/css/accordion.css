@@ -1,7 +1,7 @@
-*, *:before, *:after {
+/**, *:before, *:after {
     -webkit-box-sizing: inherit;
     box-sizing: inherit;
-}
+}*/
 
 /*html {
     -webkit-box-sizing: border-box;
@@ -57,6 +57,7 @@
 .accordion a:hover::after {
     cursor: pointer;
     color: #1979c3;
+    text-decoration: none;
 }
 
 .accordion a:hover::after {
@@ -83,6 +84,7 @@
 .accordion .content p {
     /*font-size: 1rem;*/
     font-weight: 300;
+    word-wrap: break-word;
 }
 
 .accordion .content.active {

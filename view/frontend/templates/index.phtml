@@ -18,7 +18,7 @@
 }
 </script>
 <div data-bind="scope: 'questions'">
-    <div class="container_faq">
+    <div class="container_faq" style="display: none">
         <!-- ko if: categories().length > 0 -->
         <!-- ko foreach: categories -->
         <h2><span data-bind="text:title"></span></h2>
@@ -38,5 +38,12 @@
         </div>
         <!-- /ko -->
         <!-- /ko -->
+        <!-- ko if: dataLoaded() -->
+        <!-- ko if: categories().length < 1 -->
+        <p><?php echo __('Questions and answers was not found'); ?></p>
+        <!-- /ko -->
+        <!-- /ko -->
     </div>
+
+    <div id="initial_message"><p><?php echo __("Reading data, please wait"); ?></p></div>
 </div>
