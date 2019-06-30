@@ -4,6 +4,9 @@
         <nans_faq>
             <settings>
                 <footer_link>1</footer_link>
+                <page_title>Frequently Asked Questions</page_title>
+                <page_description>Frequently Asked Questions</page_description>
+                <page_keywords>faq</page_keywords>
             </settings>
         </nans_faq>
     </default>
