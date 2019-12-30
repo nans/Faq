@@ -20,6 +20,21 @@ class Question extends AbstractBaseModel implements QuestionInterface
     protected $_cacheTag = self::CACHE_TAG;
 
     /**
+     * @var string
+     */
+    protected $_eventPrefix = 'faq_question';
+
+    /**
+     * @var string
+     */
+    protected $_eventObject = 'question';
+
+    /**
+     * @var string
+     */
+    protected $_idFieldName = self::KEY_ID;
+
+    /**
      * Initialize resource model
      *
      * @return void

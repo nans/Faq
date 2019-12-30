@@ -20,6 +20,21 @@ class Category extends AbstractBaseModel implements CategoryInterface
     protected $_cacheTag = self::CACHE_TAG;
 
     /**
+     * @var string
+     */
+    protected $_eventPrefix = 'faq_category';
+
+    /**
+     * @var string
+     */
+    protected $_eventObject = 'category';
+
+    /**
+     * @var string
+     */
+    protected $_idFieldName = self::KEY_ID;
+
+    /**
      * @return void
      */
     protected function _construct()
