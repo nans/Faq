@@ -22,7 +22,7 @@ PHP 7.0 and higher
 # Support
 If you encounter any problems or bugs, please open an [issue](https://github.com/nans/Faq/issues) on GitHub.
 
-#Versions  
+# Versions  
 ## 0.0.3
 * Removed static faq page  
 * Added widget  
