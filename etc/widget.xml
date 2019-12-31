@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:helloworld:Magento_Widget:etc/widget.xsd">
+    <widget class="Nans\Faq\Block\Widget\Faq" id="nans_faq">
+        <label>F.A.Q.</label>
+        <description>Frequently Asked Questions</description>
+    </widget>
+</widgets>

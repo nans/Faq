@@ -1,6 +1,7 @@
 # Magento 2 - FAQ extension  
 ![Sample](https://github.com/nans/devdocs/blob/master/Faq/Frontend.png "Frontend")  
-Admin can create, update, delete FAQ questions and FAQ categories.  
+* Admin can create, update, delete questions and categories.  
+* Admin can add FAQ section to pages via widget.
 
 ## Admin Panel  
 ![Sample](https://github.com/nans/devdocs/blob/master/Faq/Admin_Categories.png "Categories page")  
@@ -20,3 +21,11 @@ PHP 7.0 and higher
 
 # Support
 If you encounter any problems or bugs, please open an [issue](https://github.com/nans/Faq/issues) on GitHub.
+
+#Versions  
+## 0.0.3
+* Removed static faq page  
+* Added widget  
+* Added CMS page  
+
+

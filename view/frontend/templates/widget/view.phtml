@@ -1,5 +1,5 @@
 <?php
-/** @var \Nans\Faq\Block\Frontend\Question $block */
+/** @var \Nans\Faq\Block\Widget\Faq $block */
 ?>
 <script type="text/x-magento-init">
 {
@@ -8,9 +8,9 @@
             "components": {
                 "questions": {
                     "component"     : "Nans_Faq/js/faq_model",
-                    "baseUrl"       : "<?= $block->getBaseUrl() ?>",
-                    "apiUrl"        : "<?= $block->getApiUrl() ?>",
-                    "storeId"       : <?= $block->getStoreId() ?>
+                    "baseUrl"       : "<?php echo $block->getBaseUrl() ?>",
+                    "apiUrl"        : "<?php echo $block->getApiUrl() ?>",
+                    "storeId"       : <?php echo $block->getStoreId() ?>
                 }
             }
         }
