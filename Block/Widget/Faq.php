@@ -6,7 +6,6 @@ use Magento\Widget\Block\BlockInterface;
 use Magento\Framework\View\Element\Template;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Framework\View\Element\Template\Context;
-use Magento\Framework\Exception\NoSuchEntityException;
 use Nans\Faq\Helper\Constants;
 
 class Faq extends Template implements BlockInterface

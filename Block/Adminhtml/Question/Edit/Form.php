@@ -71,8 +71,6 @@ class Form extends Generic
     }
 
     /**
-     * Init form
-     *
      * @return void
      */
     protected function _construct()
@@ -83,7 +81,7 @@ class Form extends Generic
     }
 
     /**
-     * @return $this
+     * @return Generic
      * @throws \Magento\Framework\Exception\LocalizedException
      */
     protected function _prepareForm()

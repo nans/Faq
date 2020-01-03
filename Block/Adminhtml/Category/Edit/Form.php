@@ -62,7 +62,7 @@ class Form extends Generic
     }
 
     /**
-     * @return $this
+     * @return Generic
      * @throws \Magento\Framework\Exception\LocalizedException
      */
     protected function _prepareForm()
