@@ -2,11 +2,13 @@
 
 namespace Nans\Faq\Controller\Adminhtml;
 
+use Exception;
 use Magento\Backend\App\Action\Context;
 use Magento\Backend\Model\Session;
 use Magento\Backend\Model\View\Result\Redirect;
 use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Model\AbstractModel;
+
 use Nans\Faq\Api\Data\BaseInterface;
 use Nans\Faq\Helper\Constants;
 
@@ -59,7 +61,7 @@ abstract class AbstractSaveAction extends AbstractBaseAction
                 }
 
                 return $resultRedirect->setPath('*/*/');
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $this->messageManager->addExceptionMessage(
                     $e, __('Something went wrong while saving.')
                 );

@@ -2,6 +2,7 @@
 
 namespace Nans\Faq\Block\Adminhtml\Category\Edit;
 
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Backend\Block\Template\Context;
 use Magento\Backend\Block\Widget\Form\Generic;
 use Magento\Config\Model\Config\Source\Yesno;
@@ -9,6 +10,7 @@ use Magento\Framework\Data\FormFactory;
 use Magento\Framework\Model\AbstractModel;
 use Magento\Framework\Registry;
 use Magento\Store\Model\System\Store;
+
 use Nans\Faq\Api\Data\CategoryInterface;
 use Nans\Faq\Api\Data\StatusInterface;
 
@@ -63,7 +65,7 @@ class Form extends Generic
 
     /**
      * @return Generic
-     * @throws \Magento\Framework\Exception\LocalizedException
+     * @throws LocalizedException
      */
     protected function _prepareForm()
     {

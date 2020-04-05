@@ -10,6 +10,8 @@ use Magento\Framework\Data\FormFactory;
 use Magento\Framework\Model\AbstractModel;
 use Magento\Framework\Registry;
 use Magento\Store\Model\System\Store;
+use Magento\Framework\Exception\LocalizedException;
+
 use Nans\Faq\Api\Data\CategoryInterface;
 use Nans\Faq\Api\Data\QuestionInterface;
 use Nans\Faq\Api\Data\StatusInterface;
@@ -82,7 +84,7 @@ class Form extends Generic
 
     /**
      * @return Generic
-     * @throws \Magento\Framework\Exception\LocalizedException
+     * @throws LocalizedException
      */
     protected function _prepareForm()
     {

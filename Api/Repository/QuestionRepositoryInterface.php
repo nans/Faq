@@ -39,7 +39,7 @@ interface QuestionRepositoryInterface
      * @param int $id
      *
      * @return void
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     * @throws NoSuchEntityException
      * @throws CouldNotDeleteException
      */
     public function deleteById(int $id);

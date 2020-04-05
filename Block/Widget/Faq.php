@@ -2,6 +2,7 @@
 
 namespace Nans\Faq\Block\Widget;
 
+use Exception;
 use Magento\Widget\Block\BlockInterface;
 use Magento\Framework\View\Element\Template;
 use Magento\Store\Model\StoreManagerInterface;
@@ -37,7 +38,7 @@ class Faq extends Template implements BlockInterface
     {
         try {
             return $this->storeManager->getStore()->getId();
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             return 0;
         }
     }

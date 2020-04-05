@@ -6,6 +6,8 @@ use Magento\Framework\Setup\InstallSchemaInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\SchemaSetupInterface;
 use Magento\Framework\DB\Ddl\Table;
+use Zend_Db_Exception;
+
 use Nans\Faq\Helper\Constants;
 
 class InstallSchema implements InstallSchemaInterface
@@ -15,7 +17,7 @@ class InstallSchema implements InstallSchemaInterface
      *
      * @param SchemaSetupInterface $setup
      * @param ModuleContextInterface $context
-     * @throws \Zend_Db_Exception
+     * @throws Zend_Db_Exception
      */
     public function install(
         SchemaSetupInterface $setup,
@@ -29,7 +31,7 @@ class InstallSchema implements InstallSchemaInterface
 
     /**
      * @param SchemaSetupInterface $setup
-     * @throws \Zend_Db_Exception
+     * @throws Zend_Db_Exception
      */
     private function _createCategoryTable(SchemaSetupInterface $setup)
     {
@@ -53,7 +55,7 @@ class InstallSchema implements InstallSchemaInterface
 
     /**
      * @param SchemaSetupInterface $setup
-     * @throws \Zend_Db_Exception
+     * @throws Zend_Db_Exception
      */
     private function _createQuestionTable(SchemaSetupInterface $setup)
     {
@@ -104,7 +106,7 @@ class InstallSchema implements InstallSchemaInterface
 
     /**
      * @param Table $table
-     * @throws \Zend_Db_Exception
+     * @throws Zend_Db_Exception
      */
     private function _addStatusColumn(Table &$table)
     {
@@ -119,7 +121,7 @@ class InstallSchema implements InstallSchemaInterface
 
     /**
      * @param Table $table
-     * @throws \Zend_Db_Exception
+     * @throws Zend_Db_Exception
      */
     private function _addTimeColumns(Table &$table)
     {
@@ -143,7 +145,7 @@ class InstallSchema implements InstallSchemaInterface
     /**
      * @param Table $table
      * @param int $length
-     * @throws \Zend_Db_Exception
+     * @throws Zend_Db_Exception
      */
     private function _addTitleColumn(Table &$table, $length = 255)
     {
@@ -152,7 +154,7 @@ class InstallSchema implements InstallSchemaInterface
 
     /**
      * @param Table $table
-     * @throws \Zend_Db_Exception
+     * @throws Zend_Db_Exception
      */
     private function _addSortOrderColumn(Table &$table)
     {
@@ -168,7 +170,7 @@ class InstallSchema implements InstallSchemaInterface
     /**
      * @param Table $table
      * @param int $length
-     * @throws \Zend_Db_Exception
+     * @throws Zend_Db_Exception
      */
     private function _addStoreIdsColumn(Table &$table, int $length = 255)
     {
@@ -181,7 +183,7 @@ class InstallSchema implements InstallSchemaInterface
     /**
      * @param Table $table
      * @param string $title
-     * @throws \Zend_Db_Exception
+     * @throws Zend_Db_Exception
      */
     private function _addPrimaryIdColumn(Table &$table, string $title)
     {
@@ -202,7 +204,7 @@ class InstallSchema implements InstallSchemaInterface
      * @param string $column
      * @param string $refTable
      * @param string $refColumn
-     * @throws \Zend_Db_Exception
+     * @throws Zend_Db_Exception
      */
     private function _addForeignKey(
         Table &$table,
@@ -224,7 +226,7 @@ class InstallSchema implements InstallSchemaInterface
     /**
      * @param Table $table
      * @param SchemaSetupInterface $setup
-     * @throws \Zend_Db_Exception
+     * @throws Zend_Db_Exception
      */
     private function _addIndexes(Table &$table, SchemaSetupInterface $setup)
     {
@@ -237,7 +239,7 @@ class InstallSchema implements InstallSchemaInterface
      * @param Table $table
      * @param SchemaSetupInterface $setup
      * @param array $fields
-     * @throws \Zend_Db_Exception
+     * @throws Zend_Db_Exception
      */
     private function _addIndex(Table &$table, SchemaSetupInterface $setup, array $fields)
     {

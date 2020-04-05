@@ -2,8 +2,10 @@
 
 namespace Nans\Faq\Controller\Adminhtml;
 
+use Exception;
 use Magento\Backend\Model\View\Result\Redirect;
 use Magento\Framework\Controller\ResultInterface;
+
 use Nans\Faq\Helper\Constants;
 
 abstract class AbstractDeleteAction extends AbstractBaseAction
@@ -22,7 +24,7 @@ abstract class AbstractDeleteAction extends AbstractBaseAction
                 $this->messageManager->addSuccessMessage(__('The record has been deleted.'));
 
                 return $resultRedirect->setPath('*/*/');
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $this->messageManager->addErrorMessage($e->getMessage());
 
                 return $resultRedirect->setPath('*/*/edit', [Constants::FRONTEND_ID => $id]);
